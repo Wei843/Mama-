@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>居家收入起步手册</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241f1a; --ink-soft:#544b42; --ink-faint:#938578;
+    --cream:#fdf8f3; --paper:#ffffff; --line:#efe6db;
+    --coral:#e07a4f; --coral-deep:#bf5a31; --coral-soft:#fde9df;
+    --calm:#5d7a88; --calm-soft:#e9f1f4; --leaf:#6f9159; --leaf-soft:#ecf3e7;
+    --sun:#eaa83f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Sans SC",-apple-system,sans-serif;
+    color:var(--ink);font-weight:300;line-height:1.85;font-size:18px;
+    background:
+      radial-gradient(120% 70% at 85% -5%, #fce7d8 0%, rgba(252,231,216,0) 55%),
+      radial-gradient(90% 60% at 0% 100%, #e8f0f2 0%, rgba(232,240,242,0) 50%),
+      var(--cream);
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 20px}
+
+  /* scroll progress */
+  #bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:50;
+    background:linear-gradient(90deg,var(--coral),var(--sun));transition:width .1s linear}
+
+  /* hero */
+  header{position:relative;padding:64px 0 30px;text-align:left;overflow:hidden}
+  .sky{position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(120deg,#fff4ea 0%, #fbe7da 45%, #e9eff2 100%);
+    opacity:.55;animation:drift 14s ease-in-out infinite alternate}
+  @keyframes drift{from{transform:translateX(-3%) scale(1.05)}to{transform:translateX(3%) scale(1.1)}}
+  .orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.9}
+  .orb.sun{width:84px;height:84px;right:24px;top:40px;background:radial-gradient(circle at 35% 35%,#ffd27a,#eaa83f);
+    box-shadow:0 0 50px #f3c06a;animation:bob 6s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(-12px)}}
+  .eyebrow{font-family:"Fraunces",serif;letter-spacing:.24em;text-transform:uppercase;
+    font-size:.72rem;color:var(--coral-deep);font-weight:600;opacity:0;animation:up .7s .1s forwards}
+  h1{font-family:"Noto Serif SC",serif;font-weight:600;font-size:clamp(2.1rem,8vw,3rem);
+    line-height:1.25;margin-top:16px;opacity:0;animation:up .7s .25s forwards}
+  h1 em{font-family:"Fraunces",serif;font-style:italic;color:var(--coral-deep)}
+  .tagline{margin-top:18px;font-size:1.08rem;color:var(--ink-soft);max-width:30em;
+    opacity:0;animation:up .7s .4s forwards}
+  .scrollhint{margin-top:26px;font-size:.85rem;color:var(--ink-faint);opacity:0;animation:up .7s .6s forwards;
+    display:flex;align-items:center;gap:8px}
+  .scrollhint .arr{display:inline-block;animation:nudge 1.6s ease-in-out infinite}
+  @keyframes nudge{50%{transform:translateY(5px)}}
+  @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  section{padding:40px 0}
+  .chip{display:inline-block;font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.1em;
+    text-transform:uppercase;font-weight:600;padding:5px 13px;border-radius:999px;margin-bottom:12px}
+  .chip.coral{background:var(--coral-soft);color:var(--coral-deep)}
+  .chip.calm{background:var(--calm-soft);color:#3c5662}
+  .chip.leaf{background:var(--leaf-soft);color:#3f5731}
+  .chip.sun{background:#fdeecb;color:#a06c14}
+  h2{font-family:"Noto Serif SC",serif;font-weight:600;font-size:1.55rem;line-height:1.35;margin-bottom:8px}
+  .sub{color:var(--ink-faint);font-size:1rem;margin-bottom:18px}
+  p.para{font-size:1.04rem;color:var(--ink-soft);margin-bottom:13px}
+  p.para b,li b{color:var(--ink);font-weight:500}
+
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 20px;
+    box-shadow:0 10px 30px -22px rgba(80,55,40,.4)}
+  .card+.card{margin-top:13px}
+
+  .mini h4{font-size:1.06rem;font-weight:500;margin-bottom:2px}
+  .mini p{font-size:.96rem;color:var(--ink-soft)}
+  .mini .ic{font-size:1.5rem;margin-bottom:6px}
+
+  ul.tick{list-style:none}
+  ul.tick li{padding:9px 0 9px 30px;position:relative;font-size:1rem;border-bottom:1px solid var(--line)}
+  ul.tick li:last-child{border-bottom:none}
+  ul.tick li::before{content:"✓";position:absolute;left:2px;top:9px;color:var(--leaf);font-weight:700}
+
+  /* AI prompt copy cards */
+  .prompt{background:var(--cream);border:1px solid var(--line);border-left:4px solid var(--coral);
+    border-radius:12px;padding:14px 15px;font-size:1rem;color:var(--ink);line-height:1.65}
+  .copy{margin-top:11px;display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:#fff;
+    border:none;border-radius:10px;padding:10px 16px;font-family:inherit;font-size:.92rem;font-weight:500;
+    cursor:pointer;transition:transform .12s ease,background .2s ease}
+  .copy:active{transform:scale(.96)} .copy.done{background:var(--leaf)}
+  .ptag{display:inline-block;font-size:.78rem;font-weight:600;color:var(--coral-deep);
+    background:var(--coral-soft);padding:3px 11px;border-radius:999px;margin-bottom:10px}
+
+  /* stepper */
+  .stepper{margin-top:6px}
+  .stp{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px dashed var(--line)}
+  .stp:last-child{border-bottom:none}
+  .stp .n{flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--calm);color:#fff;
+    display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:600;font-size:1.05rem;
+    transition:transform .3s ease}
+  .stp.have .n{background:var(--leaf)}
+  .stp:hover .n{transform:rotate(-6deg) scale(1.06)}
+  .stp h4{font-size:1.04rem;font-weight:500} .stp p{font-size:.93rem;color:var(--ink-soft)}
+  .soothe{margin-top:14px;background:var(--leaf-soft);border:1px solid #d9e7cf;border-radius:13px;
+    padding:14px 16px;color:#3f5731;font-size:.98rem} .soothe b{color:#2d4221}
+
+  /* calculator */
+  .calc{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:24px 20px;
+    box-shadow:0 14px 36px -24px rgba(80,55,40,.5)}
+  .crow{margin-bottom:16px}
+  .crow label{display:flex;justify-content:space-between;align-items:baseline;font-size:.94rem;color:var(--ink-soft);margin-bottom:8px}
+  .crow label b{font-family:"Fraunces",serif;font-weight:600;color:var(--ink);font-size:1.04rem}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:var(--line)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;
+    background:var(--coral);border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.22);cursor:pointer;transition:transform .1s}
+  input[type=range]::-webkit-slider-thumb:active{transform:scale(1.2)}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--coral);
+    border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.22);cursor:pointer}
+  .night input[type=range]{background:var(--calm-soft)}
+  .night input[type=range]::-webkit-slider-thumb{background:var(--calm)}
+  .night input[type=range]::-moz-range-thumb{background:var(--calm)}
+  .calc h4{font-family:"Noto Serif SC",serif;font-size:1.04rem;margin:4px 0 14px;display:flex;align-items:center;gap:7px}
+  .calc h4.day{color:var(--coral-deep)} .calc h4.night{color:#3c5662}
+  .result{margin-top:18px;background:var(--ink);color:#fff;border-radius:16px;padding:22px;text-align:center}
+  .result .lab{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#cdbdae}
+  .result .big{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(2.3rem,11vw,3rem);line-height:1.1;margin:4px 0}
+  .result .big small{font-size:1.2rem;color:var(--sun);vertical-align:super}
+  .result .bd{font-size:.85rem;color:#d6c8bb;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:4px}
+  .result .bd b{color:#fff;font-weight:500}
+
+  /* timeline */
+  .tl{position:relative;padding-left:8px}
+  .ph{position:relative;padding:0 0 22px 38px}
+  .ph::before{content:"";position:absolute;left:12px;top:22px;bottom:-2px;width:2px;background:var(--line)}
+  .ph:last-child::before{display:none}
+  .ph .dot{position:absolute;left:4px;top:2px;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--coral)}
+  .ph:nth-child(2) .dot{border-color:var(--sun)} .ph:nth-child(3) .dot{border-color:var(--calm)}
+  .ph .when{font-family:"Fraunces",serif;font-weight:600;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--coral)}
+  .ph:nth-child(2) .when{color:#a06c14} .ph:nth-child(3) .when{color:#3c5662}
+  .ph h4{font-family:"Noto Serif SC",serif;font-size:1.1rem;font-weight:600;margin:2px 0 6px}
+  .ph li{font-size:.96rem;color:var(--ink-soft);padding:3px 0 3px 16px;position:relative;list-style:none}
+  .ph li::before{content:"–";position:absolute;left:0;color:var(--ink-faint)}
+
+  /* checklist */
+  .todo{list-style:none}
+  .todo li{display:flex;align-items:center;gap:13px;padding:15px 16px;border:1px solid var(--line);
+    border-radius:14px;margin-bottom:10px;background:var(--paper);cursor:pointer;
+    transition:background .2s,border-color .2s,transform .1s;font-size:1.02rem}
+  .todo li:active{transform:scale(.99)}
+  .todo li .box{flex:0 0 auto;width:26px;height:26px;border-radius:8px;border:2px solid var(--coral);
+    display:grid;place-items:center;color:#fff;font-weight:700;transition:background .2s,transform .2s}
+  .todo li.done{background:var(--leaf-soft);border-color:#cfe2c4}
+  .todo li.done .box{background:var(--leaf);border-color:var(--leaf);transform:scale(1)}
+  .todo li.done .txt{text-decoration:line-through;color:var(--ink-faint)}
+  .todo li .box span{opacity:0;transform:scale(.5);transition:.2s}
+  .todo li.done .box span{opacity:1;transform:scale(1)}
+  .cheer{text-align:center;font-family:"Noto Serif SC",serif;font-size:1.05rem;color:var(--leaf);
+    margin-top:6px;height:1.5em;opacity:0;transition:opacity .4s}
+  .cheer.show{opacity:1}
+
+  footer{padding:46px 0 64px;text-align:center}
+  footer .fline{font-family:"Noto Serif SC",serif;font-size:1.32rem;font-weight:600;max-width:24em;margin:0 auto 12px;line-height:1.6}
+  footer .fsub{font-size:1rem;color:var(--ink-faint);max-width:28em;margin:0 auto;line-height:1.8}
+  .note{margin-top:24px;font-size:.78rem;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:16px}
+
+  @media(min-width:560px){.orb.sun{width:100px;height:100px}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<header>
+  <div class="sky"></div>
+  <div class="orb sun"></div>
+  <div class="wrap">
+    <div class="eyebrow">起步指南 · 慢慢来</div>
+    <h1>这条路，<br><em>其实很稳</em></h1>
+    <p class="tagline">不用很厉害才能开始。只要踏出最小的一步，就已经在往前了。这本手册，一页一页陪着走。</p>
+    <div class="scrollhint"><span class="arr">↓</span> 往下滑，一起看看</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- intro -->
+  <section>
+    <div class="card reveal">
+      <p class="para">刚想开始做点什么的时候，难免会担心：万一花了钱、花了时间，结果不成怎么办？这种顾虑很正常，也很聪明。</p>
+      <p class="para">但其实，开始一门小生意，<b>需要的本钱比想象中少很多</b>。很多事都能从「几乎不花钱」的一小步开始——先试，觉得可以，再走下一步。<b>不用一次拼到底，随时可以停。</b></p>
+    </div>
+  </section>
+
+  <!-- 1 AI -->
+  <section>
+    <div class="reveal">
+      <span class="chip coral">第一章</span>
+      <h2>先学会用 AI，你的免费小帮手</h2>
+      <p class="sub">把它想成一个随时都在、很有耐心、什么都懂一点的助手。</p>
+    </div>
+    <div class="card reveal">
+      <p class="para">你<b>会打字、会用社媒</b>，所以 AI 对你来说一点都不难。用<b>讲的或打字</b>都行，不用懂英文。可以先用「<b>ChatGPT</b>」或「<b>豆包</b>」，两个都免费、中文也用得顺，挑一个顺手的就好。</p>
+      <p class="para" style="margin:4px 0 2px">试试直接复制下面这句，贴进去看看：</p>
+    </div>
+    <div class="card reveal">
+      <span class="ptag">写宣传</span>
+      <div class="prompt" id="p1">我是做家庭清洁的，做工仔细、价钱公道，在 PJ 一带接单。帮我写一段亲切的介绍，发到邻居 WhatsApp 群，三四句就好，不要太像广告。</div>
+      <button class="copy" data-t="p1">📋 复制这句</button>
+    </div>
+    <div class="card reveal">
+      <span class="ptag">看懂英文 / 学一句</span>
+      <div class="prompt" id="p2">教我用英文跟客户说「你的屋子已经打扫好了，请检查一下，谢谢」，写出英文，也用中文标怎么念。</div>
+      <button class="copy" data-t="p2">📋 复制这句</button>
+    </div>
+    <div class="reveal card" style="background:var(--coral-soft);border-color:#f2d7c7">
+      <p class="para" style="margin:0;color:var(--coral-deep)">口诀：<b>「我是谁 ＋ 我要你做什么 ＋ 我想要怎样」</b>。讲得越清楚，它帮得越好。</p>
+    </div>
+  </section>
+
+  <!-- 2 Cleaning -->
+  <section>
+    <div class="reveal">
+      <span class="chip coral">第二章 · 白天</span>
+      <h2>把清洁变成自己的生意</h2>
+      <p class="sub">你已经会打扫——要做的，是「自己接固定客户」，不是打散工。</p>
+    </div>
+    <div class="card reveal">
+      <p class="para"><b>稳定的关键</b>：一个每周固定来的客户，比十个一次性客户更值钱。慢慢累积 <b>5–6 个每周固定的家庭</b>，月收入就稳下来了。</p>
+      <ul class="tick">
+        <li><b>定价（KL 行情）</b>：每次 3–4 小时，收 RM90–120；自备用品可多收 RM20–30</li>
+        <li><b>找客户</b>：邻里 WhatsApp 群、公寓住户群、Facebook 社区群</li>
+        <li><b>最有说服力</b>：拍「打扫前后对比」照片发出去</li>
+        <li><b>留住客户</b>：准时、做得仔细、愿意出示 IC 让人安心</li>
+        <li><b>熟手后往高价走</b>：深层 → 搬家 → 装修后清洁（一间三房可到 RM200–500）</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3 Driving -->
+  <section>
+    <div class="reveal">
+      <span class="chip calm">第三章 · 晚上</span>
+      <h2>开车赚外快（PSV ＋ 四个 app）</h2>
+      <p class="sub">好消息：办一张执照，Grab、AirAsia、Bolt、inDrive 全都能用。</p>
+    </div>
+    <div class="card reveal">
+      <p class="para"><b>你的一天</b>：早上到下午做清洁（主收入）；晚上收工后想开就打开 app 待机，接客人赚多一份，累了关掉休息，时间你自己定。</p>
+      <p class="para" style="font-weight:500;color:var(--ink);margin-bottom:4px">考 PSV 执照（现在没有笔试）：</p>
+      <div class="stepper">
+        <div class="stp have"><div class="n">✓</div><div><h4>你已经有的</h4><p>正常 D 驾照 ＋ 会开车，最重要的早就有了</p></div></div>
+        <div class="stp"><div class="n">1</div><div><h4>诊所做 JPJ L8A 体检</h4><p>普通身体检查，拿到证明</p></div></div>
+        <div class="stp"><div class="n">2</div><div><h4>上 6 小时 PSV 课</h4><p>没有笔试，上完拿证书</p></div></div>
+        <div class="stp"><div class="n">3</div><div><h4>领 PSV 卡</h4><p>交去 JPJ 领卡，一年换一次</p></div></div>
+      </div>
+      <div class="soothe">💚 别被费用吓到：透过 Grab 报名考，<b>PSV 课程、体检、卡的费用办好后基本都能报销</b>，等于不用自己长期掏钱，可以放心去办。</div>
+      <p class="para" style="margin-top:14px"><b>建议先注册 Grab</b>，让它帮你把执照、保险、EVP 都办好，再用同一套文件去注册 AirAsia、Bolt、inDrive。</p>
+      <ul class="tick" style="margin-top:6px">
+        <li><b>晚上待机</b>：打开 app 按「上线」，有单就接，可同时开几个</li>
+        <li><b>安全第一</b>：分享定位给家人、选光线好的地方、车门上锁、累了收工</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4 Other -->
+  <section>
+    <div class="reveal">
+      <span class="chip leaf">第四章</span>
+      <h2>其他适合你的赚钱方式</h2>
+      <p class="sub">不用全做，挑一两样做得开心、做得来的就好。</p>
+    </div>
+    <div class="card mini reveal"><div class="ic">🍜</div><h4>卖家常菜 / 糕点</h4><p>爱煮的话，做给邻居、附近办公室，群里接单，包月送餐更稳定。</p></div>
+    <div class="card mini reveal"><div class="ic">👕</div><h4>洗烫衣服务</h4><p>清洁的延伸，帮人洗、烫、叠衣，按袋或按月收费。</p></div>
+    <div class="card mini reveal"><div class="ic">🚗</div><h4>跑腿 / 代购 / 接送小孩</h4><p>你有车，可帮忙买菜、送东西、固定接送学生（白天的额外收入）。</p></div>
+    <div class="card mini reveal"><div class="ic">📱</div><h4>社媒上卖东西</h4><p>会用社媒——卖二手好物，或帮人代卖、团购，赚一点差价。</p></div>
+  </section>
+
+  <!-- calculator -->
+  <section>
+    <div class="reveal">
+      <span class="chip sun">算一算</span>
+      <h2>一个月，大概能赚多少？</h2>
+      <p class="sub">拖动下面的滑块，填上你自己的情况，下面自动帮你算。</p>
+    </div>
+    <div class="calc reveal">
+      <h4 class="day">☀️ 白天清洁</h4>
+      <div class="crow"><label>一个月做几单 <b><span id="cJobsV">20</span> 单</b></label><input type="range" id="cJobs" min="0" max="30" value="20"></div>
+      <div class="crow"><label>每单收费 <b>RM <span id="cPriceV">100</span></b></label><input type="range" id="cPrice" min="60" max="200" step="10" value="100"></div>
+      <div class="night">
+        <h4 class="night" style="margin-top:18px">🌙 晚上开车</h4>
+        <div class="crow"><label>一周开几晚 <b><span id="dNightsV">3</span> 晚</b></label><input type="range" id="dNights" min="0" max="7" value="3"></div>
+        <div class="crow"><label>每晚几小时 <b><span id="dHoursV">3</span> 小时</b></label><input type="range" id="dHours" min="0" max="6" value="3"></div>
+        <div class="crow"><label>每小时约赚 <b>RM <span id="dRateV">25</span></b></label><input type="range" id="dRate" min="15" max="40" value="25"></div>
+      </div>
+      <div class="crow"><label>每月油钱＋用品（估）<b>RM <span id="costV">450</span></b></label><input type="range" id="cost" min="100" max="900" step="50" value="450"></div>
+      <div class="result">
+        <div class="lab">预估每月净收入</div>
+        <div class="big"><small>RM</small> <span id="total">2,500</span></div>
+        <div class="bd"><span>清洁 <b>RM<span id="bClean">2,000</span></b></span><span>开车 <b>RM<span id="bDrive">968</span></b></span><span>成本 <b>–RM<span id="bCost">450</span></b></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- timeline -->
+  <section>
+    <div class="reveal">
+      <span class="chip coral">第五章</span>
+      <h2>90 天，一小步一小步</h2>
+      <p class="sub">做完一格，先用几天，再走下一格。</p>
+    </div>
+    <div class="card reveal">
+      <div class="tl">
+        <div class="ph"><div class="dot"></div><div class="when">第 1 周 · 起步</div><h4>不花钱，先动起来</h4>
+          <ul><li>打扫时拍 2–3 张前后对比照</li><li>加 3 个住家附近的群</li><li>用 AI 写一段介绍，发出去</li></ul></div>
+        <div class="ph"><div class="dot"></div><div class="when">第 1 个月 · 打基础</div><h4>固定客户 ＋ 办执照</h4>
+          <ul><li>争取 2–3 个每周固定客户</li><li>注册 Grab，报名 PSV、做体检</li></ul></div>
+        <div class="ph"><div class="dot"></div><div class="when">第 2–3 个月 · 双线</div><h4>稳定 ＋ 加开车</h4>
+          <ul><li>固定客户增到 5–6 个，月收入稳下来</li><li>执照下来后晚上开车 2–3 晚／周</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- this week checklist -->
+  <section>
+    <div class="reveal">
+      <span class="chip leaf">就从这里开始</span>
+      <h2>本周，先做这三件事</h2>
+      <p class="sub">都不花钱。点一下打勾，看着自己一步步往前。</p>
+    </div>
+    <ul class="todo reveal" id="todo">
+      <li data-i="1"><span class="box"><span>✓</span></span><span class="txt">下载 ChatGPT 或豆包，跟它讲一句话试试</span></li>
+      <li data-i="2"><span class="box"><span>✓</span></span><span class="txt">打扫时，拍一张「干净成果」照片</span></li>
+      <li data-i="3"><span class="box"><span>✓</span></span><span class="txt">加入 1 个住家附近的邻里群</span></li>
+    </ul>
+    <div class="cheer" id="cheer">做到了！你已经在往前了 🌱</div>
+  </section>
+
+  <footer class="reveal">
+    <p class="fline">今天，先做最小的一件事就好。<br>剩下的，慢慢来。</p>
+    <p class="fsub">起步从来都不容易。愿意去了解、愿意开始，本身就很了不起。有不懂的，随时问 AI 助手帮忙——它不会累，也不会笑你。慢慢来，做得到的。</p>
+    <p class="note">※ 规划与鼓励用途。收费、行情为吉隆坡／雪隆区参考；PSV、EVP、报销与平台政策以 JPJ／APAD 及各平台最新公告为准，重要数字请自行核实。</p>
+  </footer>
+</div>
+
+<script>
+  // scroll progress
+  const bar=document.getElementById('bar');
+  addEventListener('scroll',()=>{const h=document.documentElement;
+    bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
+
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*70)+'ms';io.observe(el);});
+
+  // copy buttons
+  document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+    const t=document.getElementById(b.dataset.t).innerText.trim();
+    try{await navigator.clipboard.writeText(t);}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');}catch(_){}a.remove();}
+    const o=b.innerHTML;b.classList.add('done');b.innerHTML='✓ 已复制，去贴给 AI';setTimeout(()=>{b.classList.remove('done');b.innerHTML=o;},1900);
+  }));
+
+  // calculator
+  const $=id=>document.getElementById(id), fmt=n=>Math.round(n).toLocaleString('en-US');
+  function calc(){
+    const cj=+$('cJobs').value,cp=+$('cPrice').value,dn=+$('dNights').value,dh=+$('dHours').value,dr=+$('dRate').value,co=+$('cost').value;
+    $('cJobsV').textContent=cj;$('cPriceV').textContent=cp;$('dNightsV').textContent=dn;$('dHoursV').textContent=dh;$('dRateV').textContent=dr;$('costV').textContent=fmt(co);
+    const clean=cj*cp, drive=dn*dh*dr*4.3, total=Math.max(clean+drive-co,0);
+    $('bClean').textContent=fmt(clean);$('bDrive').textContent=fmt(drive);$('bCost').textContent=fmt(co);$('total').textContent=fmt(total);
+  }
+  ['cJobs','cPrice','dNights','dHours','dRate','cost'].forEach(i=>$(i).addEventListener('input',calc));calc();
+
+  // checklist (in-memory only)
+  const todo=document.getElementById('todo'),cheer=document.getElementById('cheer');
+  todo.addEventListener('click',e=>{const li=e.target.closest('li');if(!li)return;li.classList.toggle('done');
+    const all=[...todo.children].every(x=>x.classList.contains('done'));cheer.classList.toggle('show',all);});
+</script>
+</body>
+</html>
