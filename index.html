@@ -9,12 +9,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#241f1a; --ink-soft:#544b42; --ink-faint:#938578;
-    --cream:#fdf8f3; --paper:#ffffff; --line:#efe6db;
-    --coral:#e07a4f; --coral-deep:#bf5a31; --coral-soft:#fde9df;
-    --calm:#5d7a88; --calm-soft:#e9f1f4; --leaf:#6f9159; --leaf-soft:#ecf3e7;
-    --grape:#8a6a96; --grape-soft:#f0e9f3; --sun:#eaa83f; --sun-soft:#fdeecb;
-    --rose:#c66b7e; --rose-soft:#fae6ea;
+    --ink:#241f1a;--ink-soft:#544b42;--ink-faint:#938578;
+    --cream:#fdf8f3;--paper:#ffffff;--line:#efe6db;--line-soft:#f5f0ea;
+    --coral:#e07a4f;--coral-deep:#bf5a31;--coral-soft:#fde9df;
+    --calm:#5d7a88;--calm-soft:#e9f1f4;--leaf:#6f9159;--leaf-soft:#ecf3e7;
+    --grape:#8a6a96;--grape-soft:#f0e9f3;--sun:#eaa83f;--sun-soft:#fdeecb;--rose:#c66b7e;--rose-soft:#fae6ea;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -22,108 +21,132 @@
     background:radial-gradient(120% 60% at 90% -5%,#fce7d8 0,rgba(252,231,216,0) 55%),radial-gradient(90% 50% at 0% 102%,#e8f0f2 0,rgba(232,240,242,0) 50%),var(--cream);
     background-attachment:fixed;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   .wrap{max-width:760px;margin:0 auto;padding:0 18px}
+  #bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;background:linear-gradient(90deg,var(--coral),var(--sun));transition:width .1s}
 
-  header{position:relative;padding:54px 0 26px;overflow:hidden}
-  .orb{position:absolute;width:90px;height:90px;right:18px;top:34px;border-radius:50%;
-    background:radial-gradient(circle at 35% 35%,#ffd27a,#eaa83f);box-shadow:0 0 50px #f3c06a;
-    animation:bob 6s ease-in-out infinite;opacity:.9}
+  header{position:relative;padding:54px 0 22px;overflow:hidden}
+  .orb{position:absolute;width:88px;height:88px;right:18px;top:30px;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%,#ffd27a,#eaa83f);box-shadow:0 0 50px #f3c06a;animation:bob 6s ease-in-out infinite;opacity:.9}
   @keyframes bob{50%{transform:translateY(-12px)}}
-  .eyebrow{font-family:"Fraunces",serif;letter-spacing:.2em;text-transform:uppercase;font-size:.72rem;
-    color:var(--coral-deep);font-weight:600;opacity:0;animation:up .6s .05s forwards}
-  h1{font-family:"Noto Serif SC",serif;font-weight:600;font-size:clamp(1.9rem,6.5vw,2.7rem);line-height:1.25;margin-top:14px;
-    opacity:0;animation:up .6s .18s forwards}
+  .eyebrow{font-family:"Fraunces",serif;letter-spacing:.2em;text-transform:uppercase;font-size:.72rem;color:var(--coral-deep);font-weight:600;opacity:0;animation:up .6s .05s forwards}
+  h1{font-family:"Noto Serif SC",serif;font-weight:600;font-size:clamp(1.9rem,6.5vw,2.7rem);line-height:1.25;margin-top:14px;opacity:0;animation:up .6s .18s forwards}
   h1 em{font-family:"Fraunces",serif;font-style:italic;color:var(--coral-deep)}
   .tagline{margin-top:14px;font-size:1.04rem;color:var(--ink-soft);max-width:34em;opacity:0;animation:up .6s .3s forwards}
   @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-  /* sticky search */
-  .searchbar{position:sticky;top:0;z-index:40;background:rgba(253,248,243,.9);backdrop-filter:blur(10px);
-    padding:12px 0 10px;border-bottom:1px solid var(--line)}
+  .guide{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px 20px 16px;margin:18px 0 6px;box-shadow:0 10px 30px -22px rgba(80,55,40,.5)}
+  .guide h2{font-family:"Noto Serif SC",serif;font-size:1.18rem;font-weight:600;margin-bottom:12px}
+  .gstep{display:flex;gap:13px;align-items:flex-start;padding:9px 0}
+  .gstep .gn{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--coral-soft);color:var(--coral-deep);display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:600}
+  .gstep p{font-size:.97rem;color:var(--ink-soft)} .gstep b{color:var(--ink);font-weight:500}
+
+  .searchbar{position:sticky;top:0;z-index:40;background:rgba(253,248,243,.92);backdrop-filter:blur(10px);padding:11px 0 9px;border-bottom:1px solid var(--line)}
   .sinput{position:relative}
-  .sinput input{width:100%;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:14px 16px 14px 44px;
-    font-family:inherit;font-size:1rem;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s}
+  .sinput input{width:100%;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:13px 16px 13px 44px;font-family:inherit;font-size:1rem;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s}
   .sinput input:focus{border-color:var(--coral);box-shadow:0 0 0 4px var(--coral-soft)}
   .sinput .mag{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:1.05rem;opacity:.5}
-  .chips{display:flex;gap:8px;overflow-x:auto;padding:11px 0 3px;scrollbar-width:none}
+  .chips{display:flex;gap:8px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none}
   .chips::-webkit-scrollbar{display:none}
-  .chip{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 15px;
-    font-size:.9rem;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:all .18s;white-space:nowrap}
-  .chip:hover{border-color:var(--coral)}
-  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .chip{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 15px;font-size:.9rem;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:all .18s;white-space:nowrap}
+  .chip:hover{border-color:var(--coral)} .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .count{font-size:.86rem;color:var(--ink-faint);margin:15px 0 10px}.count b{color:var(--coral-deep);font-family:"Fraunces",serif}
 
-  .count{font-size:.86rem;color:var(--ink-faint);margin:16px 0 10px}
-  .count b{color:var(--coral-deep);font-family:"Fraunces",serif}
-
-  /* grid */
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .cardx{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 16px;
-    box-shadow:0 8px 24px -20px rgba(80,55,40,.5);display:flex;flex-direction:column;
-    animation:pop .35s ease both}
-  @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:none}}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+  .cardx{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 8px 24px -20px rgba(80,55,40,.5);display:flex;flex-direction:column;animation:pop .35s ease both}
+  @keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   .cardx .top{display:flex;align-items:center;gap:9px;margin-bottom:7px}
-  .cardx .ic{font-size:1.35rem;flex:0 0 auto}
-  .cardx .badge{font-size:.68rem;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap}
-  .cardx h3{font-family:"Noto Serif SC",serif;font-size:1.06rem;font-weight:600;line-height:1.35;margin-bottom:5px}
-  .cardx .desc{font-size:.9rem;color:var(--ink-soft);margin-bottom:10px;flex:1}
-  .cardx .fact{font-size:.82rem;color:var(--ink-soft);padding-top:7px;border-top:1px solid var(--line-soft,#f4efe9)}
-  .cardx .fact b{color:var(--ink);font-weight:600}
-  .cardx .fact .lab{color:var(--ink-faint);font-size:.74rem}
-  /* category colors */
+  .cardx .ic{font-size:1.35rem}.cardx .badge{font-size:.68rem;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .cardx h3{font-family:"Noto Serif SC",serif;font-size:1.05rem;font-weight:600;line-height:1.35;margin-bottom:5px}
+  .cardx .desc{font-size:.9rem;color:var(--ink-soft);margin-bottom:9px}
+  .cardx .fact{font-size:.82rem;color:var(--ink-soft);padding-top:7px;border-top:1px solid var(--line-soft)}
+  .cardx .fact b{color:var(--ink);font-weight:600}.cardx .fact .lab{color:var(--ink-faint);font-size:.74rem}
   .c-home .badge{background:var(--coral-soft);color:var(--coral-deep)}
   .c-onsite .badge{background:var(--rose-soft);color:#a04356}
   .c-drive .badge{background:var(--calm-soft);color:#3c5662}
   .c-online .badge{background:var(--grape-soft);color:#664172}
   .c-teach .badge{background:var(--sun-soft);color:#9a6710}
   .c-skill .badge{background:var(--leaf-soft);color:#3f5731}
+  .toggle{margin-top:11px;background:none;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-family:inherit;font-size:.85rem;font-weight:500;color:var(--coral-deep);cursor:pointer;transition:all .18s;align-self:flex-start}
+  .toggle:hover{background:var(--coral-soft);border-color:var(--coral-soft)}
+  .detail{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .cardx.open .detail{max-height:700px}
+  .cardx.open .toggle{background:var(--coral-soft);border-color:var(--coral-soft)}
+  .dline{font-size:.88rem;color:var(--ink-soft);margin-top:11px}
+  .dline .dk{display:inline-block;font-size:.72rem;font-weight:700;color:var(--coral-deep);background:var(--coral-soft);padding:2px 8px;border-radius:6px;margin-right:6px}
+  .dlinks{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+  .linkbtn{font-size:.82rem;font-weight:500;color:#fff;background:var(--ink);border-radius:9px;padding:7px 12px;text-decoration:none;transition:background .2s}
+  .linkbtn:hover{background:#000}
+  .empty{grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--ink-faint)}.empty .big{font-size:2rem;margin-bottom:8px}
 
-  .empty{grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--ink-faint)}
-  .empty .big{font-size:2rem;margin-bottom:8px}
-
-  section.block{padding:40px 0 8px}
+  section.block{padding:42px 0 6px}
   .shead{margin-bottom:6px}
   .shead .pre{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);font-weight:600}
   .shead h2{font-family:"Noto Serif SC",serif;font-weight:600;font-size:1.5rem;line-height:1.35}
   .shead p{color:var(--ink-faint);font-size:.96rem;margin-top:4px}
 
-  /* resources */
+  .calc{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:24px 20px;margin-top:16px;box-shadow:0 14px 36px -24px rgba(80,55,40,.5)}
+  .calc h4{font-family:"Noto Serif SC",serif;font-size:1.04rem;margin:4px 0 14px;display:flex;align-items:center;gap:7px}
+  .calc h4.day{color:var(--coral-deep)}.calc h4.night{color:#3c5662}
+  .crow{margin-bottom:16px}
+  .crow label{display:flex;justify-content:space-between;align-items:baseline;font-size:.92rem;color:var(--ink-soft);margin-bottom:8px}
+  .crow label b{font-family:"Fraunces",serif;font-weight:600;color:var(--ink);font-size:1.02rem}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:var(--line)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--coral);border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.22);cursor:pointer}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--coral);border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.22);cursor:pointer}
+  .night input[type=range]{background:var(--calm-soft)}.night input[type=range]::-webkit-slider-thumb{background:var(--calm)}.night input[type=range]::-moz-range-thumb{background:var(--calm)}
+  .result{margin-top:18px;background:var(--ink);color:#fff;border-radius:16px;padding:22px;text-align:center}
+  .result .lab{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#cdbdae}
+  .result .big{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(2.3rem,11vw,3rem);line-height:1.1;margin:4px 0}
+  .result .big small{font-size:1.2rem;color:var(--sun);vertical-align:super}
+  .result .bd{font-size:.85rem;color:#d6c8bb;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:4px}.result .bd b{color:#fff;font-weight:500}
+
   .resgrid{display:grid;gap:12px;margin-top:16px}
-  .resgroup{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 18px}
+  .resgroup{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px}
   .resgroup h4{font-family:"Noto Serif SC",serif;font-size:1.08rem;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:8px}
   .resgroup .gd{font-size:.86rem;color:var(--ink-faint);margin-bottom:12px}
-  .reslink{display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-top:1px solid var(--line);text-decoration:none;color:inherit;transition:padding-left .15s}
+  .reslink{display:flex;align-items:flex-start;gap:11px;padding:12px 0;border-top:1px solid var(--line);text-decoration:none;color:inherit;transition:padding-left .15s}
   .reslink:hover{padding-left:4px}
   .reslink .rn{flex:0 0 auto;font-weight:600;color:var(--coral-deep);font-size:.95rem}
   .reslink .rd{font-size:.85rem;color:var(--ink-soft)}
-  .reslink .rd .free{display:inline-block;background:var(--leaf-soft);color:#3f5731;font-size:.68rem;font-weight:600;padding:1px 7px;border-radius:999px;margin-left:5px}
+  .tagx{display:inline-block;font-size:.66rem;font-weight:700;padding:1px 7px;border-radius:999px;margin-left:5px}
+  .t-free{background:var(--leaf-soft);color:#3f5731}.t-low{background:var(--sun-soft);color:#9a6710}.t-paid{background:var(--rose-soft);color:#a04356}
   .reslink .go{margin-left:auto;color:var(--ink-faint);font-size:.9rem}
-  .caution{background:var(--sun-soft);border:1px solid #f0dca8;border-radius:13px;padding:14px 16px;margin-top:8px;font-size:.92rem;color:#7a5a14}
-  .caution b{color:#5c4310}
+  .caution{background:var(--sun-soft);border:1px solid #f0dca8;border-radius:13px;padding:14px 16px;margin-top:8px;font-size:.92rem;color:#7a5a14}.caution b{color:#5c4310}
+  .spark{background:var(--leaf-soft);border:1px solid #d9e7cf;border-radius:14px;padding:16px 18px;margin-top:14px;font-size:.98rem;color:#3f5731}.spark b{color:#2d4221}
 
   footer{padding:46px 0 60px;text-align:center}
-  footer .fline{font-family:"Noto Serif SC",serif;font-size:1.28rem;font-weight:600;max-width:24em;margin:0 auto 12px;line-height:1.6}
+  footer .fline{font-family:"Noto Serif SC",serif;font-size:1.3rem;font-weight:600;max-width:24em;margin:0 auto 12px;line-height:1.6}
   footer .fsub{font-size:.98rem;color:var(--ink-faint);max-width:30em;margin:0 auto;line-height:1.75}
   .note{margin-top:22px;font-size:.76rem;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:14px}
-
+  .jobsel{width:100%;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px;font-family:inherit;font-size:1rem;color:var(--ink);margin-bottom:8px}
+  .sellbl{display:block;font-size:.85rem;color:var(--ink-faint);margin-bottom:6px;font-weight:500}
+  .calcnote{font-size:.8rem;color:var(--coral-deep);background:var(--coral-soft);border-radius:8px;padding:7px 11px;margin:2px 0 16px;display:inline-block}
   @media(max-width:540px){.grid{grid-template-columns:1fr}body{font-size:16px}}
 </style>
 </head>
 <body>
+<div id="bar"></div>
 
 <header>
   <div class="orb"></div>
   <div class="wrap">
     <div class="eyebrow">KL ・ Selangor 妈妈专属</div>
     <h1>找工作、赚外快、<br><em>跟上时代</em>，都从这里开始</h1>
-    <p class="tagline">这里整理了 KL／雪兰莪的妈妈们可以做的工作、能在家赚的外快，还有跟上时代该会的技能。用下面的搜索，找到适合你的那一个。</p>
+    <p class="tagline">这里整理了 KL／雪兰莪妈妈们能做的工作、能在家赚的外快、该会的技能，还有政府免费证书。一步一步来，今天先迈出最小的一步就好。</p>
   </div>
 </header>
 
+<div class="wrap">
+  <div class="guide">
+    <h2>三步，找到属于你的那条路</h2>
+    <div class="gstep"><div class="gn">1</div><p><b>想想你会什么、喜欢什么。</b>用下面的搜索打「煮」「卖」「教」「线上」，或点分类钮看看。</p></div>
+    <div class="gstep"><div class="gn">2</div><p><b>点开卡片看「怎么做・怎么开始」</b>，里面有接活的网站。先挑一个<b>几乎不用本钱</b>就能试的。</p></div>
+    <div class="gstep"><div class="gn">3</div><p><b>用「收入计算器」估一估</b>，需要证书就看「免费证书」区。然后——<b>今天就做一件小事</b>：发一则介绍、注册一个平台。</p></div>
+  </div>
+</div>
+
 <div class="searchbar">
   <div class="wrap">
-    <div class="sinput">
-      <span class="mag">🔍</span>
-      <input id="q" type="search" placeholder="搜索：清洁、烘焙、开车、网店、AI、化妆……" autocomplete="off">
-    </div>
+    <div class="sinput"><span class="mag">🔍</span><input id="q" type="search" placeholder="搜索：清洁、烘焙、开车、网店、AI、化妆……" autocomplete="off"></div>
     <div class="chips" id="chips">
       <button class="chip on" data-cat="all">全部</button>
       <button class="chip" data-cat="home">🏠 在家做</button>
@@ -140,150 +163,299 @@
   <div class="count" id="count"></div>
   <div class="grid" id="grid"></div>
 
-  <!-- Resources -->
   <section class="block">
-    <div class="shead">
-      <div class="pre">免费资源 · 政府与平台</div>
-      <h2>不知从哪开始？这些能帮你</h2>
-      <p>大多免费，专门帮主妇和小本经营者起步。</p>
-    </div>
-    <div class="resgrid">
-
-      <div class="resgroup">
-        <h4>🎓 免费学习・培训</h4>
-        <div class="gd">政府和大平台办的，免费、有中文/马来文。</div>
-        <a class="reslink" href="https://rakyatdigital.gov.my" target="_blank" rel="noopener">
-          <span class="rn">Rakyat Digital（AI untuk Rakyat）</span><span class="rd">政府免费课程门户：AI、网络安全等，完成有名字证书<span class="free">免费</span></span><span class="go">↗</span></a>
-        <a class="reslink" href="https://mdec.my" target="_blank" rel="noopener">
-          <span class="rn">eUsahawan（MDEC）</span><span class="rd">免费数字创业课，教网上做生意、卖货、营销<span class="free">免费</span></span><span class="go">↗</span></a>
-        <a class="reslink" href="https://mdec.my/erezeki" target="_blank" rel="noopener">
-          <span class="rn">eRezeki（MDEC）</span><span class="rd">用手机做数字小任务赚钱，适合在家碎片时间<span class="free">免费加入</span></span><span class="go">↗</span></a>
+    <div class="shead"><div class="pre">算一算 · 涵盖每个行业</div><h2>选个行业，估一估月收入</h2><p>先选你考虑的行业，下面会按那个行业真实的赚钱方式让你估算。</p></div>
+    <div class="calc">
+      <label class="sellbl">选择行业</label>
+      <select id="jobSel" class="jobsel"></select>
+      <div id="calcNote" class="calcnote"></div>
+      <div id="calcFields"></div>
+      <div class="result">
+        <div class="lab">预估每月净收入</div>
+        <div class="big"><small>RM</small> <span id="total">0</span></div>
+        <div class="bd"><span>毛收入 <b>RM<span id="bGross">0</span></b></span><span>成本 <b>–RM<span id="bCost">0</span></b></span></div>
       </div>
+    </div>
+  </section>
 
+  <section class="block">
+    <div class="shead"><div class="pre">政府扶持 · 能赚钱的证书</div><h2>把技能变成「正式证书」</h2><p>以免费为主、付费为辅。有证书，能接更专业的活、收更高，甚至受聘或开班。</p></div>
+    <div class="spark">💡 <b>你已经会的，就能考成证书！</b>会煮、会美容、会缝纫、会带孩子？透过 <b>SKM-PPT（凭经验认证）</b>，不必从头上课，把你多年的本事变成国家认可的技能证书。</div>
+    <div class="resgrid">
+      <div class="resgroup">
+        <h4>🆓 完全免费・在线学</h4>
+        <div class="gd">用手机就能上，完成有证书，全大马公民免费。</div>
+        <a class="reslink" href="https://elatih.hrdcorp.gov.my" target="_blank" rel="noopener"><span class="rn">e-LATiH（HRD Corp）<span class="tagx t-free">免费</span></span><span class="rd">数百门免费在线课，完成有业界认可证书</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://rakyatdigital.gov.my" target="_blank" rel="noopener"><span class="rn">Rakyat Digital<span class="tagx t-free">免费</span></span><span class="rd">AI、网络安全等政府免费课，完成有印名字证书</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://mdec.my" target="_blank" rel="noopener"><span class="rn">eUsahawan（MDEC）<span class="tagx t-free">免费</span></span><span class="rd">免费数字创业课，教网上做生意、卖货、营销</span><span class="go">↗</span></a>
+      </div>
+      <div class="resgroup">
+        <h4>💲 低费用・政府认证（能赚钱）</h4>
+        <div class="gd">国家认可，含金量高，是接专业工作、受聘、开班的敲门砖。</div>
+        <a class="reslink" href="https://www.dsd.gov.my" target="_blank" rel="noopener"><span class="rn">SKM 技能证书（PPT 凭经验考）<span class="tagx t-low">低费用</span></span><span class="rd">把现有经验（烹饪/美容/缝纫/看护等）考成官方证书，不必从头上课。有申请费，部分计划有补助/年龄条件，报名前查询</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://www.jpkk.edu.my" target="_blank" rel="noopener"><span class="rn">Kolej Komuniti 短期课程<span class="tagx t-low">低费用</span></span><span class="rd">社区学院的实用短课（烘焙/美容/电脑等），面向全民，费用低</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://www.talentcorp.com.my" target="_blank" rel="noopener"><span class="rn">TalentCorp 重返职场计划<span class="tagx t-low">免费支援</span></span><span class="rd">专为重返职场的女性提供支援与培训对接</span><span class="go">↗</span></a>
+        <div class="caution">🍳 想<b>卖食物</b>？需先上「食品处理员课程（Sijil Pengendali Makanan）」并打伤寒针，费用低，是合法卖食物的必备证。</div>
+      </div>
+      <div class="resgroup">
+        <h4>💼 付费但回报高</h4>
+        <div class="gd">需要投入学费，但学成后收入高、需求稳。</div>
+        <div class="reslink" style="border-top:none"><span class="rn">陪月 / 月嫂证书<span class="tagx t-paid">付费</span></span><span class="rd">私立学院考证，需求大，月入可达 RM4k–8k</span></div>
+        <div class="reslink"><span class="rn">育婴课程（KAAK／Asuhan）<span class="tagx t-paid">付费</span></span><span class="rd">合法开托儿所（Taska）须有此证，部分有补助</span></div>
+        <div class="reslink"><span class="rn">美容 / 美甲 / 化妆 学院课程<span class="tagx t-paid">付费</span></span><span class="rd">短期班学一门手艺，在家就能接客赚钱</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="shead"><div class="pre">更多资源 · 找工作 & 资金</div><h2>找工平台与（可选）资金</h2><p>找正式职缺、零工，或生意做大后需要周转时。</p></div>
+    <div class="resgrid">
       <div class="resgroup">
         <h4>🔎 找工作平台</h4>
         <div class="gd">全职、兼职、在家工作、零工都有，可按地区搜。</div>
-        <a class="reslink" href="https://www.maukerja.my" target="_blank" rel="noopener">
-          <span class="rn">Maukerja</span><span class="rd">本地兼职/全职多，介面简单，可搜住家附近</span><span class="go">↗</span></a>
-        <a class="reslink" href="https://www.jobstreet.com.my" target="_blank" rel="noopener">
-          <span class="rn">JobStreet</span><span class="rd">马来西亚最大求职网，正式职缺多</span><span class="go">↗</span></a>
-        <a class="reslink" href="https://goget.my" target="_blank" rel="noopener">
-          <span class="rn">GoGet</span><span class="rd">零工平台：跑腿、代购、帮手，自己选时间接单</span><span class="go">↗</span></a>
-        <a class="reslink" href="https://www.ricebowl.my" target="_blank" rel="noopener">
-          <span class="rn">Ricebowl</span><span class="rd">兼职与新鲜人职缺，常有零售/客服</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://www.maukerja.my" target="_blank" rel="noopener"><span class="rn">Maukerja</span><span class="rd">本地兼职/全职多，可搜住家附近</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://www.jobstreet.com.my" target="_blank" rel="noopener"><span class="rn">JobStreet</span><span class="rd">大马最大求职网，正式职缺多</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://goget.my" target="_blank" rel="noopener"><span class="rn">GoGet</span><span class="rd">零工平台：跑腿、代购、帮手，自选时间</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://troopers.com.my" target="_blank" rel="noopener"><span class="rn">TROOPERS</span><span class="rd">活动帮手、promoter、零售等灵活兼职</span><span class="go">↗</span></a>
       </div>
-
       <div class="resgroup">
         <h4>💰 需要资金时（可选）</h4>
-        <div class="gd">生意做起来、想扩大时才考虑。借之前先想清楚还得起。</div>
-        <a class="reslink" href="https://www.tekun.gov.my" target="_blank" rel="noopener">
-          <span class="rn">TEKUN Nasional</span><span class="rd">政府微型贷款，少文件、无需抵押（含 Skim Teman 非土著）</span><span class="go">↗</span></a>
-        <a class="reslink" href="https://www.aim.gov.my" target="_blank" rel="noopener">
-          <span class="rn">AIM（Amanah Ikhtiar Malaysia）</span><span class="rd">专门扶持低收入女性创业的小额贷款</span><span class="go">↗</span></a>
-        <a class="reslink" href="https://www.cgc.com.my" target="_blank" rel="noopener">
-          <span class="rn">CGC · BizWanita</span><span class="rd">女性企业专属的银行贷款担保计划</span><span class="go">↗</span></a>
-        <div class="caution">⚠️ <b>小心：</b>借钱是责任，不是收入。先从「几乎不用本钱」的方式起步，真的需要资金扩大时再考虑，且只找上面这些正规机构——<b>任何要你先付费、给 OTP 或私下转账的「贷款」都是骗局。</b></div>
+        <div class="gd">生意做起来、想扩大时才考虑，借前先想清楚还得起。</div>
+        <a class="reslink" href="https://www.tekun.gov.my" target="_blank" rel="noopener"><span class="rn">TEKUN Nasional</span><span class="rd">政府微贷，少文件、无需抵押（含非土著 Teman 计划）</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://www.aim.gov.my" target="_blank" rel="noopener"><span class="rn">AIM</span><span class="rd">专门扶持低收入女性创业的小额贷款</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://www.cgc.com.my" target="_blank" rel="noopener"><span class="rn">CGC · BizWanita</span><span class="rd">女性企业专属的银行贷款担保</span><span class="go">↗</span></a>
+        <div class="caution">⚠️ <b>防诈骗：</b>借钱只找上面正规机构。<b>任何要你先付费、给 OTP 或私下转账的「贷款/中介」都是骗局。</b>可上 <a href="https://semakmule.rmp.gov.my" target="_blank" rel="noopener" style="color:#5c4310;font-weight:600">Semak Mule</a> 查可疑账号。</div>
       </div>
     </div>
   </section>
 
   <footer>
     <p class="fline">你已经会很多事，<br>只是还没把它们变成收入。</p>
-    <p class="fsub">慢慢看、慢慢试。找到一个感兴趣的，先迈出最小的一步就好。有不懂的，随时可以问 AI 帮你——它免费、有耐心，也不会笑你。</p>
-    <p class="note">※ 收入与门槛为 KL／雪兰莪市场参考，实际视情况而定。涉及食品、托儿、载客等可能需相关执照或注册（如食品 MeSTI、托儿所 JKM、载客 PSV），办理前请向相关单位确认。外部链接由各机构维护，可能更新。</p>
+    <p class="fsub">不必看完才行动。找到一个心动的，点开看「怎么开始」，今天就迈出最小的一步——那一步，往往是最难、也最重要的。你比想象中更有能力。勇敢一点，你做得到。</p>
+    <p class="note">※ 收入与门槛为 KL／雪兰莪市场参考。涉及食品、托儿、载客等可能需相关执照或注册（食品处理证、Taska JKM、PSV 等），办理前请向相关单位确认。外部链接由各机构维护，可能更新。</p>
   </footer>
 </div>
 
 <script>
-  const DATA = [
-    // ---- 在家做 ----
-    {cat:'home',ic:'🧹',t:'家庭清洁',d:'帮人打扫住家，建立每周固定客户最稳定。',k1:'起步',v1:'清洁用品（约RM150）',k2:'收入参考',v2:'每次RM90–120',tags:'打扫 cleaning 清洁 钟点 家务'},
-    {cat:'home',ic:'🍱',t:'代煮便当 / Tingkat',d:'煮家常菜，给上班族、邻居，包月送餐更稳。',k1:'起步',v1:'厨房＋食材',k2:'收入参考',v2:'每户月RM300–500',tags:'煮饭 便当 tingkat 包月 家常菜 餐'},
-    {cat:'home',ic:'🧁',t:'烘焙接单',d:'蛋糕、布朗尼、节庆饼干，靠订单和口碑。',k1:'起步',v1:'烤箱＋材料',k2:'收入参考',v2:'蛋糕RM60–200/个',tags:'烘焙 蛋糕 饼干 baking cake 甜点 节庆'},
-    {cat:'home',ic:'🍡',t:'卖糕点 Kuih',d:'做传统糕点供早市、咖啡店或接订单。',k1:'起步',v1:'小，材料为主',k2:'收入参考',v2:'看出货量',tags:'糕点 kuih 早市 nyonya 传统'},
-    {cat:'home',ic:'🧵',t:'缝纫・改衣',d:'改裤脚、修补、做 baju kurung，技术活越熟越值钱。',k1:'起步',v1:'缝纫机',k2:'收入参考',v2:'改衣RM10–40/件',tags:'缝纫 改衣 裁缝 sewing baju 修补'},
-    {cat:'home',ic:'👕',t:'洗烫衣服务',d:'帮人洗、烫、叠衣，可上门收送，按件或包月。',k1:'起步',v1:'熨斗',k2:'收入参考',v2:'按公斤/包月',tags:'洗衣 烫衣 dobi laundry 熨'},
-    {cat:'home',ic:'🧸',t:'家庭托儿',d:'在家照顾邻居小孩，需安全环境与信任。',k1:'起步',v1:'多名孩童须向JKM注册',k2:'收入参考',v2:'每名月RM400–800',tags:'托儿 看孩子 babysitting taska 保姆 育儿'},
-    {cat:'home',ic:'💅',t:'在家美甲 / 美睫',d:'学一门手艺，在家接客，回头客多。',k1:'起步',v1:'工具＋短期课程',k2:'收入参考',v2:'每次RM30–120',tags:'美甲 美睫 nail lash 美容 手艺'},
-    {cat:'home',ic:'🕯️',t:'手工艺品',d:'蜡烛、香皂、串珠、滴胶，节庆礼盒最好卖。',k1:'起步',v1:'材料',k2:'收入参考',v2:'看款式定价',tags:'手工 手作 craft 蜡烛 香皂 礼盒 diy'},
+  const D=[
+  {cat:'home',ic:'🧹',t:'家庭清洁',d:'帮人打扫住家，固定客户最稳。',k1:'起步',v1:'清洁用品约RM150',k2:'收入',v2:'每次RM90–120',
+   how:'上门扫地拖地、抹尘、洗厕所厨房；做每周/两周固定的客户最稳定。',start:'①备基本用品 ②在平台注册或邻里群发介绍＋前后对比照 ③定价、准时做仔细，靠口碑。',
+   links:[{n:'Maideasy 接单',u:'https://maideasy.my/jom-kerja-cleaner'},{n:'Recommend.my',u:'https://www.recommend.my'}],tags:'打扫 cleaning 清洁 钟点 家务'},
+  {cat:'home',ic:'🍱',t:'代煮便当 / Tingkat',d:'煮家常菜送给上班族、邻居。',k1:'起步',v1:'厨房＋食材',k2:'收入',v2:'每户月RM300–500',
+   how:'在家煮，做成饭盒/tingkat 送餐，包月最稳定。',start:'①定3–5道拿手菜＋每周菜单 ②在公司群、社区群接订单 ③安排送餐。想正规可向SSM注册＋考食品处理证。',
+   links:[{n:'SSM 注册',u:'https://www.ssm.com.my'},{n:'FB Marketplace',u:'https://www.facebook.com/marketplace'}],tags:'煮饭 便当 tingkat 包月 家常菜 餐'},
+  {cat:'home',ic:'🧁',t:'烘焙接单',d:'蛋糕、布朗尼、节庆饼干。',k1:'起步',v1:'烤箱＋材料',k2:'收入',v2:'蛋糕RM60–200',
+   how:'接订单做甜点，节庆（CNY/Raya/Deepavali）饼干礼盒最好赚。',start:'①练2–3款招牌 ②拍美照发IG/FB ③开放预订、收订金。可上Shopee/foodpanda。',
+   links:[{n:'Instagram',u:'https://www.instagram.com'},{n:'eUsahawan 学营销',u:'https://mdec.my'}],tags:'烘焙 蛋糕 饼干 baking cake 甜点 节庆'},
+  {cat:'home',ic:'🍡',t:'卖糕点 Kuih',d:'做传统糕点供早市、咖啡店。',k1:'起步',v1:'小，材料为主',k2:'收入',v2:'看出货量',
+   how:'做好卖的几款 kuih，供应早市、嘛嘛档、咖啡店或接订单。',start:'①选招牌款 ②找附近店家寄卖或开放订单 ③固定出货量、稳定品质。',
+   links:[{n:'FB Marketplace',u:'https://www.facebook.com/marketplace'}],tags:'糕点 kuih 早市 nyonya 传统'},
+  {cat:'home',ic:'🧵',t:'缝纫・改衣',d:'改衣、修补、做 baju。',k1:'起步',v1:'缝纫机',k2:'收入',v2:'改衣RM10–40/件',
+   how:'帮人改裤脚、修补、改尺寸，做baju kurung/窗帘，越熟单价越高。',start:'①备缝纫机 ②在Recommend.my、GoGet或邻里群接活 ③从改衣做起，再接订做。',
+   links:[{n:'Recommend.my',u:'https://www.recommend.my'},{n:'GoGet',u:'https://goget.my'}],tags:'缝纫 改衣 裁缝 sewing baju 修补'},
+  {cat:'home',ic:'👕',t:'洗烫衣服务',d:'帮人洗、烫、叠衣。',k1:'起步',v1:'熨斗',k2:'收入',v2:'按公斤/包月',
+   how:'帮忙洗、烫、叠衣，可上门收送，按公斤/件或包月收费。',start:'①备熨斗烫板 ②在群里或GoGet接单 ③定清楚价格（每公斤/每篮）。',
+   links:[{n:'GoGet',u:'https://goget.my'}],tags:'洗衣 烫衣 dobi laundry 熨'},
+  {cat:'home',ic:'🧸',t:'家庭托儿',d:'在家照顾邻居小孩。',k1:'起步',v1:'安全环境＋JKM注册',k2:'收入',v2:'每名月RM400–800',
+   how:'在家照顾小孩，需安全空间与信任；收托多名孩童须注册成Taska。',start:'①布置安全空间 ②若收多名孩童，向JKM注册Taska＋考育婴证 ③与家长谈好时间费用。',
+   links:[{n:'JKM（社会福利局）',u:'https://www.jkm.gov.my'}],tags:'托儿 看孩子 babysitting taska 保姆 育儿'},
+  {cat:'home',ic:'💅',t:'在家美甲 / 美睫',d:'学一门手艺，在家接客。',k1:'起步',v1:'工具＋短课',k2:'收入',v2:'每次RM30–120',
+   how:'学美甲或美睫，在家给客人做，回头客多。',start:'①报短期课＋买基本工具 ②拍作品发IG ③朋友邻居先做起，靠口碑接客。',
+   links:[{n:'Instagram',u:'https://www.instagram.com'}],tags:'美甲 美睫 nail lash 美容 手艺'},
+  {cat:'home',ic:'🕯️',t:'手工艺品',d:'蜡烛、香皂、串珠、滴胶。',k1:'起步',v1:'材料',k2:'收入',v2:'看款式定价',
+   how:'做手作产品，节庆礼盒最好卖。',start:'①选1–2款练熟 ②在Shopee、Carousell、IG上架 ③节前推礼盒套装。',
+   links:[{n:'Shopee 卖家中心',u:'https://seller.shopee.com.my'},{n:'Carousell',u:'https://www.carousell.com.my'}],tags:'手工 手作 craft 蜡烛 香皂 礼盒 diy'},
 
-    // ---- 上门服务 ----
-    {cat:'onsite',ic:'🤱',t:'陪月 / 月嫂',d:'照顾产妇与新生儿，需求大、收入高，可考陪月课程。',k1:'起步',v1:'陪月课程/经验',k2:'收入参考',v2:'每月RM4k–8k',tags:'陪月 月嫂 confinement 坐月 产后 看护'},
-    {cat:'onsite',ic:'👵',t:'看护 / 居家照顾',d:'照顾长者或病人，陪伴、起居协助。',k1:'起步',v1:'耐心/护理经验',k2:'收入参考',v2:'时薪或月薪',tags:'看护 caregiver 长者 老人 照顾 护理'},
-    {cat:'onsite',ic:'💄',t:'化妆师 / 新娘妆',d:'帮人化妆，婚礼、活动需求稳定。',k1:'起步',v1:'化妆课＋器材',k2:'收入参考',v2:'每单RM150–600+',tags:'化妆 makeup 新娘 mua 美妆 婚礼'},
-    {cat:'onsite',ic:'💆',t:'按摩 / Spa Urut',d:'上门或在家做传统按摩、产后护理。',k1:'起步',v1:'手艺/课程',k2:'收入参考',v2:'每次RM60–150',tags:'按摩 spa urut massage 推拿 产后'},
-    {cat:'onsite',ic:'🎪',t:'摆摊 / 夜市',d:'在 pasar malam 或市集卖吃的、小物。',k1:'起步',v1:'摊位租金＋货',k2:'收入参考',v2:'看人流',tags:'摆摊 夜市 pasar malam 市集 小贩 摊'},
-    {cat:'onsite',ic:'🙋',t:'活动帮手 / Promoter',d:'周末活动、试吃推广、展销帮手，时间灵活。',k1:'起步',v1:'低',k2:'收入参考',v2:'时薪/日薪',tags:'promoter 活动 兼职 part time 推广 展销'},
+  {cat:'onsite',ic:'🤱',t:'陪月 / 月嫂',d:'照顾产妇与新生儿。',k1:'起步',v1:'陪月课程',k2:'收入',v2:'每月RM4k–8k',
+   how:'上门或到月子中心，煮月子餐、护理产妇、照顾宝宝，需求大收入高。',start:'①报陪月课程考证 ②加入陪月/月子FB群或月子公司接案 ③做好口碑接转介。',
+   links:[{n:'看证书区考证',u:'https://elatih.hrdcorp.gov.my'}],tags:'陪月 月嫂 confinement 坐月 产后 看护'},
+  {cat:'onsite',ic:'👵',t:'看护 / 居家照顾',d:'照顾长者或病人。',k1:'起步',v1:'耐心/护理经验',k2:'收入',v2:'时薪或月薪',
+   how:'到府陪伴、协助长者或病人起居，可全/兼职。',start:'①在Homage等平台注册 ②通过背景审查与培训 ③接案，按时薪计。',
+   links:[{n:'Homage 注册',u:'https://www.homage.com.my'}],tags:'看护 caregiver 长者 老人 照顾 护理'},
+  {cat:'onsite',ic:'💄',t:'化妆师 / 新娘妆',d:'帮人化妆，婚礼活动。',k1:'起步',v1:'化妆课＋器材',k2:'收入',v2:'每单RM150–600+',
+   how:'帮客户化妆，婚礼、毕业、活动需求稳定。',start:'①学化妆＋备器材 ②拍作品集发IG ③在Recommend.my挂服务、接预约。',
+   links:[{n:'Recommend.my',u:'https://www.recommend.my'},{n:'Instagram',u:'https://www.instagram.com'}],tags:'化妆 makeup 新娘 mua 美妆 婚礼'},
+  {cat:'onsite',ic:'💆',t:'按摩 / Spa Urut',d:'传统按摩、产后护理。',k1:'起步',v1:'手艺/课程',k2:'收入',v2:'每次RM60–150',
+   how:'上门或在家做传统按摩、产后护理。',start:'①学一门手艺/考证 ②挂Recommend.my或邻里群 ③固定客户＋预约制。',
+   links:[{n:'Recommend.my',u:'https://www.recommend.my'}],tags:'按摩 spa urut massage 推拿 产后'},
+  {cat:'onsite',ic:'🎪',t:'摆摊 / 夜市',d:'在 pasar malam 卖东西。',k1:'起步',v1:'摊位租金＋货',k2:'收入',v2:'看人流',
+   how:'在夜市/市集卖吃的或小物。',start:'①向当地市政局（PBT）或夜市管理人申请摊位 ②备货与设备 ③选人流旺的点。',
+   links:[],tags:'摆摊 夜市 pasar malam 市集 小贩 摊'},
+  {cat:'onsite',ic:'🙋',t:'活动帮手 / Promoter',d:'周末活动、试吃推广。',k1:'起步',v1:'低',k2:'收入',v2:'时薪/日薪',
+   how:'周末活动、展销、试吃推广帮手，时间灵活。',start:'①在TROOPERS或GoGet注册 ②选适合的班次申请 ③按时到岗，app内打卡领薪。',
+   links:[{n:'TROOPERS',u:'https://troopers.com.my'},{n:'GoGet',u:'https://goget.my'}],tags:'promoter 活动 兼职 part time 推广 展销'},
 
-    // ---- 开车 ----
-    {cat:'drive',ic:'🚕',t:'E-hailing 开车',d:'Grab、AirAsia、Bolt、inDrive 载客，一张 PSV 全通用。',k1:'起步',v1:'PSV执照（可免费考）',k2:'收入参考',v2:'RM20–40/小时',tags:'grab 开车 e-hailing psv airasia bolt indrive 载客 司机'},
-    {cat:'drive',ic:'🛵',t:'送餐 / 送货',d:'foodpanda、Grab 送餐，或 Lalamove 送货。',k1:'起步',v1:'交通工具（部分需PSV）',k2:'收入参考',v2:'按单计',tags:'送餐 foodpanda grab 送货 lalamove delivery 外卖'},
-    {cat:'drive',ic:'📦',t:'跑腿 / 代购',d:'GoGet、Lalamove 接任务：买菜、排队、送东西。',k1:'起步',v1:'注册平台',k2:'收入参考',v2:'按任务',tags:'跑腿 代购 goget errand 帮买 任务'},
-    {cat:'drive',ic:'🚐',t:'接送学生',d:'固定接送学生上下学，谈好家长就有稳定月收入。',k1:'起步',v1:'车＋与家长谈好',k2:'收入参考',v2:'每名月固定',tags:'接送 学生 校车 carpool 上学 司机'},
+  {cat:'drive',ic:'🚕',t:'E-hailing 开车',d:'Grab/AirAsia/Bolt/inDrive 载客。',k1:'起步',v1:'PSV执照(可免费考)',k2:'收入',v2:'RM20–40/小时',
+   how:'载客赚车资，一张PSV执照四个平台通用，时间自己定。',start:'①考PSV（透过Grab报名可报销）＋办EVP、保险 ②注册各平台司机版app ③晚上空闲上线接单。',
+   links:[{n:'Grab 司机',u:'https://www.grab.com/my/driver/'},{n:'AirAsia ride',u:'https://www.airasia.com/aa/ride/driver/'},{n:'Bolt',u:'https://bolt.eu/en-my/driver/'}],tags:'grab 开车 e-hailing psv airasia bolt indrive 载客 司机'},
+  {cat:'drive',ic:'🛵',t:'送餐 / 送货',d:'foodpanda、Grab 送餐。',k1:'起步',v1:'交通工具',k2:'收入',v2:'按单计',
+   how:'帮平台送餐或送包裹，按单赚钱，高峰时段更好赚。',start:'①备交通工具（电单车最常用）②在foodpanda/Grab注册骑手 ③上线接单。',
+   links:[{n:'foodpanda 骑手',u:'https://www.foodpanda.my'},{n:'Lalamove',u:'https://www.lalamove.com/en-my'}],tags:'送餐 foodpanda grab 送货 lalamove delivery 外卖 骑手'},
+  {cat:'drive',ic:'📦',t:'跑腿 / 代购',d:'帮买、排队、送东西。',k1:'起步',v1:'注册平台',k2:'收入',v2:'按任务',
+   how:'接任务帮人买菜、排队、取送东西，自己选要不要接。',start:'①在GoGet注册成Tasker ②设好可服务的区域 ③接任务、完成领钱。',
+   links:[{n:'GoGet',u:'https://goget.my'},{n:'Lalamove',u:'https://www.lalamove.com/en-my'}],tags:'跑腿 代购 goget errand 帮买 任务'},
+  {cat:'drive',ic:'🚐',t:'接送学生',d:'固定接送上下学。',k1:'起步',v1:'车＋与家长谈好',k2:'收入',v2:'每名月固定',
+   how:'固定接送学生上下学，谈好家长就有稳定月收入。',start:'①向附近学校家长群宣传 ②谈好路线、人数、费用 ③注意车辆与保险合规。',
+   links:[],tags:'接送 学生 校车 carpool 上学 司机'},
 
-    // ---- 线上 ----
-    {cat:'online',ic:'🛒',t:'网店卖货',d:'在 Shopee、TikTok Shop 卖货，0 店租。',k1:'起步',v1:'货源＋手机',k2:'收入参考',v2:'看销量',tags:'网店 shopee tiktok 卖货 电商 online shop 开店'},
-    {cat:'online',ic:'📹',t:'直播带货',d:'用手机开直播卖东西，练熟了转化很高。',k1:'起步',v1:'手机＋练习',k2:'收入参考',v2:'佣金＋销量',tags:'直播 带货 live tiktok 卖 主播'},
-    {cat:'online',ic:'🤝',t:'代购 / 团购',d:'当团长开团、代理或 dropship，赚佣金差价。',k1:'起步',v1:'供应商＋社群',k2:'收入参考',v2:'佣金/差价',tags:'团购 代购 dropship 代理 团长 微商'},
-    {cat:'online',ic:'⌨️',t:'在家接案 WFH',d:'打字、数据输入、线上客服、行政支援。',k1:'起步',v1:'电脑＋一项技能',k2:'收入参考',v2:'按件/时',tags:'wfh 在家工作 打字 客服 freelance 自由 数据'},
-    {cat:'online',ic:'📲',t:'内容创作 / 联盟营销',d:'拍短视频、写测评，靠流量与佣金（慢热但可持续）。',k1:'起步',v1:'手机＋耐心',k2:'收入参考',v2:'佣金（慢热）',tags:'内容 创作 affiliate 联盟 小红书 tiktok 测评 网红'},
-    {cat:'online',ic:'🗂️',t:'虚拟助理 VA',d:'帮小企业管理邮件、排程、社媒，远程做。',k1:'起步',v1:'电脑＋组织力',k2:'收入参考',v2:'时薪',tags:'va 虚拟助理 assistant 远程 行政'},
-    {cat:'online',ic:'🌐',t:'翻译 / 文案',d:'中英巫互译、帮人写文案，按件接。',k1:'起步',v1:'双语能力',k2:'收入参考',v2:'按字/件',tags:'翻译 文案 translate 中英 写作'},
-    {cat:'online',ic:'🪙',t:'eRezeki 数字微任务',d:'政府平台，用碎片时间做线上小任务赚钱。',k1:'起步',v1:'上 eRezeki 注册',k2:'收入参考',v2:'小额累积',tags:'erezeki 微任务 gig 政府 在家 mdec'},
+  {cat:'online',ic:'🛒',t:'网店卖货',d:'Shopee、TikTok Shop 卖货。',k1:'起步',v1:'货源＋手机',k2:'收入',v2:'看销量',
+   how:'在网上开店卖货，0店租，全天都能卖。',start:'①找货源/自家产品 ②在Shopee或TikTok卖家中心开店、上架 ③拍好图、做促销、发货。',
+   links:[{n:'Shopee 卖家中心',u:'https://seller.shopee.com.my'},{n:'TikTok Shop 卖家',u:'https://seller-my.tiktok.com'}],tags:'网店 shopee tiktok 卖货 电商 online shop 开店'},
+  {cat:'online',ic:'📹',t:'直播带货',d:'用手机开直播卖东西。',k1:'起步',v1:'手机＋练习',k2:'收入',v2:'佣金＋销量',
+   how:'开直播介绍产品、即时回答、引导下单，练熟转化高。',start:'①在TikTok/Shopee开通直播 ②准备脚本与货 ③固定时间开播、练口条。',
+   links:[{n:'TikTok Shop',u:'https://seller-my.tiktok.com'}],tags:'直播 带货 live tiktok 卖 主播'},
+  {cat:'online',ic:'🤝',t:'代购 / 团购',d:'当团长、代理、dropship。',k1:'起步',v1:'供应商＋社群',k2:'收入',v2:'佣金/差价',
+   how:'帮供应商开团/代理或dropship，赚佣金或差价，不用囤货。',start:'①找可靠供应商 ②建WhatsApp/FB群开团 ③收单、统一下单、安排取货。',
+   links:[{n:'Shopee 找货源',u:'https://shopee.com.my'}],tags:'团购 代购 dropship 代理 团长 微商'},
+  {cat:'online',ic:'⌨️',t:'在家接案 WFH',d:'打字、数据输入、线上客服。',k1:'起步',v1:'电脑＋一项技能',k2:'收入',v2:'按件/时',
+   how:'远程做打字、数据输入、客服、行政等，时间灵活。',start:'①在Fiverr/Upwork建档或Maukerja搜WFH ②先接小单累积评价 ③稳定后接长期客户。',
+   links:[{n:'Fiverr',u:'https://www.fiverr.com'},{n:'Maukerja WFH',u:'https://www.maukerja.my'}],tags:'wfh 在家工作 打字 客服 freelance 自由 数据'},
+  {cat:'online',ic:'📲',t:'内容创作 / 联盟营销',d:'拍短视频、写测评赚佣金。',k1:'起步',v1:'手机＋耐心',k2:'收入',v2:'佣金（慢热）',
+   how:'拍视频/写测评，放联盟链接，有人买就抽佣，慢热但可持续。',start:'①选你熟的主题（育儿/美食/生活）②持续发IG/TikTok/小红书 ③加入联盟（如Involve Asia）放链接。',
+   links:[{n:'Involve Asia',u:'https://involve.asia'},{n:'TikTok',u:'https://www.tiktok.com'}],tags:'内容 创作 affiliate 联盟 小红书 tiktok 测评 网红'},
+  {cat:'online',ic:'🗂️',t:'虚拟助理 VA',d:'远程帮企业处理事务。',k1:'起步',v1:'电脑＋组织力',k2:'收入',v2:'时薪',
+   how:'帮小企业管理邮件、排程、社媒、客服，全部远程。',start:'①整理你会的技能 ②在Fiverr/Upwork建档 ③接小项目、建立长期合作。',
+   links:[{n:'Upwork',u:'https://www.upwork.com'},{n:'Fiverr',u:'https://www.fiverr.com'}],tags:'va 虚拟助理 assistant 远程 行政'},
+  {cat:'online',ic:'🌐',t:'翻译 / 文案',d:'中英巫互译、写文案。',k1:'起步',v1:'双语能力',k2:'收入',v2:'按字/件',
+   how:'帮人翻译或写文案，按件接，可在家做。',start:'①整理语言/写作样本 ②在Fiverr/Upwork挂服务 ③先接小单累积口碑。',
+   links:[{n:'Fiverr',u:'https://www.fiverr.com'},{n:'Upwork',u:'https://www.upwork.com'}],tags:'翻译 文案 translate 中英 写作'},
+  {cat:'online',ic:'🪙',t:'eRezeki 数字微任务',d:'用碎片时间做线上小任务。',k1:'起步',v1:'上eRezeki注册',k2:'收入',v2:'小额累积',
+   how:'政府平台，做线上小任务赚钱，适合在家碎片时间。',start:'①上MDEC eRezeki注册 ②参加培训/对接 ③按任务完成累积收入。',
+   links:[{n:'eRezeki（MDEC）',u:'https://mdec.my/erezeki'}],tags:'erezeki 微任务 gig 政府 在家 mdec'},
 
-    // ---- 教学才艺 ----
-    {cat:'teach',ic:'✏️',t:'补习',d:'教你擅长的科目，小学到中学需求都大。',k1:'起步',v1:'学科强项',k2:'收入参考',v2:'每小时RM25–60',tags:'补习 tuition 教书 功课 学生 老师'},
-    {cat:'teach',ic:'🎹',t:'教钢琴 / 音乐',d:'有乐器底子的话，在家收学生。',k1:'起步',v1:'乐器与基础',k2:'收入参考',v2:'每堂RM30–80',tags:'钢琴 音乐 乐器 piano 教 才艺'},
-    {cat:'teach',ic:'🍳',t:'教烹饪 / 烘焙班',d:'把你的拿手菜开成小班或工作坊。',k1:'起步',v1:'拿手手艺',k2:'收入参考',v2:'每场报名费',tags:'烹饪班 烘焙班 工作坊 workshop 教 厨艺'},
-    {cat:'teach',ic:'🧮',t:'课后看顾 + 辅导',d:'放学后照顾孩子并辅导功课，家长很需要。',k1:'起步',v1:'耐心＋基础学科',k2:'收入参考',v2:'每名月固定',tags:'课后 辅导 功课 daycare 看顾 学生'},
+  {cat:'teach',ic:'✏️',t:'补习',d:'教你擅长的科目。',k1:'起步',v1:'学科强项',k2:'收入',v2:'每小时RM25–60',
+   how:'教小学到中学的科目，可上门、在家或线上。',start:'①确定擅长科目与年级 ②在Superprof建档或邻里群宣传 ③定价、排课。',
+   links:[{n:'Superprof 注册',u:'https://www.superprof.com.my/tutor/'}],tags:'补习 tuition 教书 功课 学生 老师'},
+  {cat:'teach',ic:'🎹',t:'教钢琴 / 音乐',d:'有乐器底子就能收学生。',k1:'起步',v1:'乐器与基础',k2:'收入',v2:'每堂RM30–80',
+   how:'在家教钢琴或其他乐器，按堂收费。',start:'①备乐器与教材 ②在Superprof挂课或社区群宣传 ③固定上课时间。',
+   links:[{n:'Superprof',u:'https://www.superprof.com.my/tutor/'}],tags:'钢琴 音乐 乐器 piano 教 才艺'},
+  {cat:'teach',ic:'🍳',t:'教烹饪 / 烘焙班',d:'把拿手菜开成小班。',k1:'起步',v1:'拿手手艺',k2:'收入',v2:'每场报名费',
+   how:'把你的拿手菜/烘焙开成小班或工作坊收费。',start:'①设计一堂课内容 ②在FB/IG开放报名收费 ③在家或租场地开班。',
+   links:[{n:'Instagram 宣传',u:'https://www.instagram.com'}],tags:'烹饪班 烘焙班 工作坊 workshop 教 厨艺'},
+  {cat:'teach',ic:'🧮',t:'课后看顾 + 辅导',d:'放学后看顾并辅导功课。',k1:'起步',v1:'耐心＋基础学科',k2:'收入',v2:'每名月固定',
+   how:'放学后照顾孩子、督促与辅导功课，家长很需要。',start:'①布置安静学习空间 ②向附近家长群宣传 ③谈好接放学、餐食、费用。',
+   links:[],tags:'课后 辅导 功课 daycare 看顾 学生'},
 
-    // ---- 技能学习（跟上时代）----
-    {cat:'skill',ic:'🤖',t:'学会用 AI',d:'帮你写文案、翻译、解答疑问——你的免费小帮手。',k1:'为什么重要',v1:'省时间、跨过英文门槛',k2:'去哪学',v2:'ChatGPT/豆包・Rakyat Digital',tags:'ai chatgpt 豆包 人工智能 跟上时代'},
-    {cat:'skill',ic:'📱',t:'电子钱包 & QR 收款',d:'Touch n Go、DuitNow QR 收钱付钱，客户都爱用。',k1:'为什么重要',v1:'收款方便、显得专业',k2:'去哪学',v2:'app 内引导・问 AI',tags:'ewallet touch n go duitnow qr 收款 付款 电子钱包'},
-    {cat:'skill',ic:'🏦',t:'网上银行 & 转账',d:'收款、转账、对账，生意收入清清楚楚。',k1:'为什么重要',v1:'管理收入必备',k2:'去哪学',v2:'你的银行 app',tags:'网上银行 转账 duitnow banking 收钱'},
-    {cat:'skill',ic:'💬',t:'WhatsApp Business',d:'产品目录、自动回复、群发广播，接单更省力。',k1:'为什么重要',v1:'专业地接客、留客',k2:'去哪学',v2:'免费下载・问 AI 设定',tags:'whatsapp business 目录 自动回复 广播 接单'},
-    {cat:'skill',ic:'🎨',t:'用 Canva 做海报',d:'自己做宣传海报、价目表、logo，免费又好看。',k1:'为什么重要',v1:'省设计费、看起来用心',k2:'去哪学',v2:'canva.com・YouTube',tags:'canva 海报 设计 价目表 logo 宣传'},
-    {cat:'skill',ic:'🎬',t:'拍照 & 剪短视频',d:'拍好产品照、用 CapCut 剪带货短视频。',k1:'为什么重要',v1:'好图好片＝多客人',k2:'去哪学',v2:'CapCut・YouTube',tags:'拍照 剪辑 capcut 短视频 产品照 视频'},
-    {cat:'skill',ic:'📣',t:'社媒营销基础',d:'FB、IG、TikTok、小红书，免费让更多人看到你。',k1:'为什么重要',v1:'免费曝光、找客户',k2:'去哪学',v2:'eUsahawan 免费课・YouTube',tags:'社媒 营销 facebook instagram tiktok 小红书 推广'},
-    {cat:'skill',ic:'🛍️',t:'开网店步骤',d:'一步步把生意搬上 Shopee / TikTok Shop。',k1:'为什么重要',v1:'24 小时都能卖',k2:'去哪学',v2:'卖家中心・eUsahawan',tags:'开网店 shopee tiktok 卖家 电商 上线'},
-    {cat:'skill',ic:'🛡️',t:'防诈骗',d:'识破假投资、假客服、假中奖，保住辛苦钱。',k1:'为什么重要',v1:'保护你的积蓄',k2:'记住',v2:'不点陌生链接・绝不给 OTP',tags:'诈骗 防骗 scam otp 安全 假客服 假投资'},
-    {cat:'skill',ic:'📒',t:'简单记账',d:'记下收入与开销，知道自己真正赚多少、留多少。',k1:'为什么重要',v1:'生意才做得久',k2:'去哪学',v2:'记账 app 或本子・问 AI',tags:'记账 理财 budget 收入 管理 账'},
-    {cat:'skill',ic:'🗣️',t:'基础英文 / 马来文',d:'学几句常用的客户用语，沟通更顺。',k1:'为什么重要',v1:'接触更多客户',k2:'去哪学',v2:'用 AI 每天学一句',tags:'英文 马来文 english malay 语言 沟通 学习'},
+  {cat:'skill',ic:'🤖',t:'学会用 AI',d:'帮你写、翻译、解答。',k1:'重要',v1:'省时＋跨过英文门槛',k2:'去哪学',v2:'ChatGPT/豆包・Rakyat Digital',
+   how:'当成随时在的免费助手：帮写文案、翻译客户讯息、解答不懂的事。',start:'①下载ChatGPT或豆包 ②用「我是谁＋要你做什么＋想要怎样」提问 ③想要证书可上Rakyat Digital学。',
+   links:[{n:'Rakyat Digital（免费课）',u:'https://rakyatdigital.gov.my'},{n:'ChatGPT',u:'https://chatgpt.com'}],tags:'ai chatgpt 豆包 人工智能 跟上时代'},
+  {cat:'skill',ic:'📱',t:'电子钱包 & QR 收款',d:'TnG、DuitNow QR 收付款。',k1:'重要',v1:'收款方便、显专业',k2:'去哪学',v2:'app内引导・问AI',
+   how:'用Touch n Go、DuitNow QR收钱付钱，客户都爱用，免找零。',start:'①装好e-wallet/银行app ②生成自己的收款QR ③打印出来摆在摊位/给客户扫。',
+   links:[],tags:'ewallet touch n go duitnow qr 收款 付款 电子钱包'},
+  {cat:'skill',ic:'💬',t:'WhatsApp Business',d:'目录、自动回复、广播。',k1:'重要',v1:'专业接客、留客',k2:'去哪学',v2:'免费下载・问AI',
+   how:'用商业版WhatsApp放产品目录、设自动回复、群发广播给客户。',start:'①下载WhatsApp Business ②建产品目录与营业资料 ③设自动回复，整理客户名单。',
+   links:[],tags:'whatsapp business 目录 自动回复 广播 接单'},
+  {cat:'skill',ic:'🎨',t:'用 Canva 做海报',d:'海报、价目表、logo。',k1:'重要',v1:'省设计费、显用心',k2:'去哪学',v2:'canva.com',
+   how:'用免费模板自己做宣传海报、价目表、简单logo。',start:'①注册Canva ②搜模板改文字图片 ③导出发到群里/社媒。',
+   links:[{n:'Canva',u:'https://www.canva.com'}],tags:'canva 海报 设计 价目表 logo 宣传'},
+  {cat:'skill',ic:'🎬',t:'拍照 & 剪短视频',d:'产品照、带货短视频。',k1:'重要',v1:'好图好片＝多客人',k2:'去哪学',v2:'CapCut・YouTube',
+   how:'拍清楚的产品照，用CapCut剪短视频带货。',start:'①自然光下拍干净背景 ②用CapCut套模板加字幕 ③发TikTok/IG/小红书。',
+   links:[{n:'CapCut',u:'https://www.capcut.com'}],tags:'拍照 剪辑 capcut 短视频 产品照 视频'},
+  {cat:'skill',ic:'📣',t:'社媒营销基础',d:'FB/IG/TikTok/小红书。',k1:'重要',v1:'免费曝光、找客户',k2:'去哪学',v2:'eUsahawan・YouTube',
+   how:'用社媒免费让更多人看到你的产品与服务。',start:'①选1–2个平台固定发 ②发有用/真实的内容 ③上eUsahawan免费课学方法。',
+   links:[{n:'eUsahawan',u:'https://mdec.my'}],tags:'社媒 营销 facebook instagram tiktok 小红书 推广'},
+  {cat:'skill',ic:'🛡️',t:'防诈骗',d:'识破假投资、假客服。',k1:'重要',v1:'保护你的积蓄',k2:'记住',v2:'不点陌生链接・绝不给OTP',
+   how:'认清常见骗局，保护辛苦赚来的钱。',start:'①收钱前上Semak Mule查对方账号 ②绝不给OTP/密码/银行资料 ③可疑就停下、问家人。',
+   links:[{n:'Semak Mule 查账号',u:'https://semakmule.rmp.gov.my'}],tags:'诈骗 防骗 scam otp 安全 假客服 假投资'},
+  {cat:'skill',ic:'📒',t:'简单记账',d:'知道赚多少、留多少。',k1:'重要',v1:'生意才做得久',k2:'去哪学',v2:'记账app/本子・问AI',
+   how:'记下每笔收入与开销，分清成本和利润。',start:'①每天记一笔 ②分开生意钱和家用钱 ③月底看结余，调整定价。',
+   links:[],tags:'记账 理财 budget 收入 管理 账'},
+  {cat:'skill',ic:'🗣️',t:'基础英文 / 马来文',d:'学常用客户用语。',k1:'重要',v1:'接触更多客户',k2:'去哪学',v2:'用AI每天学一句',
+   how:'学几句常用的客户沟通语，敢开口就够用。',start:'①让AI教你常用句＋怎么念 ②每天学一句、用一句 ③不怕讲错，多练就顺。',
+   links:[{n:'ChatGPT',u:'https://chatgpt.com'}],tags:'英文 马来文 english malay 语言 沟通 学习'},
   ];
 
-  const catLabel = {home:'在家做',onsite:'上门服务',drive:'开车',online:'线上',teach:'教学才艺',skill:'技能学习'};
-  const grid=document.getElementById('grid'), countEl=document.getElementById('count'), qEl=document.getElementById('q');
-  let activeCat='all', query='';
-
+  const L={home:'在家做',onsite:'上门服务',drive:'开车',online:'线上',teach:'教学才艺',skill:'技能学习'};
+  const grid=document.getElementById('grid'),countEl=document.getElementById('count'),qEl=document.getElementById('q');
+  let activeCat='all',query='';
   function render(){
     const q=query.trim().toLowerCase();
-    const list=DATA.filter(x=>{
-      const okCat = activeCat==='all' || x.cat===activeCat;
-      const hay = (x.t+' '+x.d+' '+x.tags+' '+catLabel[x.cat]).toLowerCase();
-      const okQ = !q || hay.includes(q);
-      return okCat && okQ;
-    });
-    countEl.innerHTML = list.length ? `找到 <b>${list.length}</b> 个适合你的选择` : '';
-    if(!list.length){
-      grid.innerHTML = `<div class="empty"><div class="big">🌱</div>没找到「${query}」相关的。<br>换个词试试，例如「煮」「卖」「教」「线上」，或点上面的分类看看。</div>`;
-      return;
-    }
-    grid.innerHTML = list.map((x,i)=>`
-      <div class="cardx c-${x.cat}" style="animation-delay:${Math.min(i*30,300)}ms">
-        <div class="top"><span class="ic">${x.ic}</span><span class="badge">${catLabel[x.cat]}</span></div>
-        <h3>${x.t}</h3>
-        <div class="desc">${x.d}</div>
+    const list=D.filter(x=>{const okC=activeCat==='all'||x.cat===activeCat;
+      const hay=(x.t+' '+x.d+' '+x.how+' '+x.tags+' '+L[x.cat]).toLowerCase();
+      return okC&&(!q||hay.includes(q));});
+    countEl.innerHTML=list.length?`找到 <b>${list.length}</b> 个适合你的选择`:'';
+    if(!list.length){grid.innerHTML=`<div class="empty"><div class="big">🌱</div>没找到「${query}」相关的。<br>换个词试试，例如「煮」「卖」「教」「线上」，或点上面的分类。</div>`;return;}
+    grid.innerHTML=list.map((x,i)=>`
+      <div class="cardx c-${x.cat}" style="animation-delay:${Math.min(i*25,300)}ms">
+        <div class="top"><span class="ic">${x.ic}</span><span class="badge">${L[x.cat]}</span></div>
+        <h3>${x.t}</h3><div class="desc">${x.d}</div>
         <div class="fact"><span class="lab">${x.k1}：</span><b>${x.v1}</b><br><span class="lab">${x.k2}：</span><b>${x.v2}</b></div>
+        <button class="toggle">怎么做・怎么开始 ▾</button>
+        <div class="detail">
+          <div class="dline"><span class="dk">怎么做</span>${x.how}</div>
+          <div class="dline"><span class="dk">怎么开始</span>${x.start}</div>
+          ${x.links&&x.links.length?'<div class="dlinks">'+x.links.map(l=>`<a class="linkbtn" href="${l.u}" target="_blank" rel="noopener">${l.n} ↗</a>`).join('')+'</div>':''}
+        </div>
       </div>`).join('');
   }
-
-  document.getElementById('chips').addEventListener('click',e=>{
-    const b=e.target.closest('.chip'); if(!b) return;
-    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
-    b.classList.add('on'); activeCat=b.dataset.cat; render();
-  });
+  document.getElementById('chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));b.classList.add('on');activeCat=b.dataset.cat;render();});
   qEl.addEventListener('input',e=>{query=e.target.value;render();});
+  grid.addEventListener('click',e=>{const t=e.target.closest('.toggle');if(!t)return;t.closest('.cardx').classList.toggle('open');});
   render();
+
+  addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
+
+  const fmt=n=>Math.round(n).toLocaleString('en-US');
+  const CALC={
+   '家庭清洁':{m:'job',j:[20,0,40,1],p:[100,60,150,5],cost:[50,0,300,10]},
+   '代煮便当 / Tingkat':{m:'client',c:[6,0,30],fee:[400,200,600,10],cost:[800,0,3000,50],cl:'固定客户数',costl:'每月食材成本'},
+   '烘焙接单':{m:'job',j:[15,0,60,1],p:[120,40,400,10],cost:[600,0,3000,50],jl:'一个月几个订单',costl:'每月材料成本'},
+   '卖糕点 Kuih':{m:'piece',q:[600,0,3000,20],p:[1.5,0.5,6,0.5],cost:[450,0,2000,50],ql:'一个月做几个',pl:'每个卖',costl:'每月材料成本'},
+   '缝纫・改衣':{m:'piece',q:[60,0,300,5],p:[25,10,120,5],cost:[60,0,500,10],ql:'一个月做几件',pl:'每件收'},
+   '洗烫衣服务':{m:'piece',q:[120,0,600,10],p:[8,3,18,1],cost:[100,0,500,10],ql:'一个月几公斤',pl:'每公斤'},
+   '家庭托儿':{m:'client',c:[3,0,8],fee:[600,400,900,50],cost:[250,0,1500,50],costl:'每月餐食等成本'},
+   '在家美甲 / 美睫':{m:'job',j:[30,0,80,1],p:[70,30,150,5],cost:[150,0,800,10],costl:'每月耗材成本'},
+   '手工艺品':{m:'job',j:[25,0,150,1],p:[40,15,200,5],cost:[200,0,1500,20],jl:'一个月卖几件',pl:'每件卖',costl:'每月材料成本'},
+   '陪月 / 月嫂':{m:'client',c:[1,0,3],fee:[6000,3000,9000,200],cost:[0,0,1000,50],cl:'一个月接几单'},
+   '看护 / 居家照顾':{m:'hour',d:[5,0,7],h:[6,1,10],r:[18,12,30],cost:[0,0,500,10],dl:'一周几天'},
+   '化妆师 / 新娘妆':{m:'job',j:[8,0,40,1],p:[300,120,800,20],cost:[40,0,500,10],jl:'一个月几单',costl:'每月用品成本'},
+   '按摩 / Spa Urut':{m:'job',j:[40,0,120,1],p:[90,50,180,5],cost:[0,0,800,20],jl:'一个月几次'},
+   '摆摊 / 夜市':{m:'job',j:[12,0,30,1],p:[250,50,1500,10],cost:[120,0,1500,20],jl:'一个月摆几次',pl:'每次营业额',costl:'每月货+租成本'},
+   '活动帮手 / Promoter':{m:'hour',d:[2,0,7],h:[6,1,10],r:[14,10,22],cost:[0,0,200,10],dl:'一周做几天'},
+   'E-hailing 开车':{m:'hour',d:[4,0,7],h:[3,1,8],r:[28,18,42],cost:[350,0,1500,50],dl:'一周开几晚',costl:'每月油钱'},
+   '送餐 / 送货':{m:'hour',d:[5,0,7],h:[4,1,10],r:[15,10,25],cost:[250,0,1200,50],dl:'一周送几天',costl:'每月油钱'},
+   '跑腿 / 代购':{m:'task',q:[60,0,300],p:[12,5,30,1],cost:[150,0,800,20],costl:'每月油钱'},
+   '接送学生':{m:'client',c:[4,0,12],fee:[250,150,450,10],cost:[250,0,1200,50],costl:'每月油钱'},
+   '网店卖货':{m:'sales',s:[4000,0,30000,200],pct:[30,5,80],cost:[100,0,1500,50],costl:'每月平台费/杂费'},
+   '直播带货':{m:'sales',s:[3000,0,30000,200],pct:[25,5,70],cost:[50,0,1000,50]},
+   '代购 / 团购':{m:'sales',s:[2000,0,20000,100],pct:[15,3,40],cost:[0,0,500,20],sl:'每月开团总额',pctl:'你的佣金/利润'},
+   '在家接案 WFH':{m:'hour',d:[5,0,7],h:[3,1,10],r:[20,12,50],cost:[0,0,300,10],dl:'一周做几天'},
+   '内容创作 / 联盟营销':{m:'sales',s:[2000,0,30000,100],pct:[8,1,30],cost:[0,0,300,10],sl:'每月带货销售额',pctl:'佣金率'},
+   '虚拟助理 VA':{m:'hour',d:[5,0,7],h:[3,1,10],r:[22,15,60],cost:[0,0,200,10],dl:'一周做几天'},
+   '翻译 / 文案':{m:'job',j:[12,0,80,1],p:[100,30,500,10],cost:[0,0,300,10],jl:'一个月几单'},
+   'eRezeki 数字微任务':{m:'task',q:[200,0,1000],p:[3,1,15,0.5],cost:[0,0,100,5]},
+   '补习':{m:'hour',d:[4,0,7],h:[2,1,8],r:[40,25,70],cost:[0,0,200,10],dl:'一周补几天'},
+   '教钢琴 / 音乐':{m:'hour',d:[4,0,7],h:[2,1,8],r:[50,30,90],cost:[0,0,200,10],dl:'一周教几天'},
+   '教烹饪 / 烘焙班':{m:'job',j:[4,0,20,1],p:[600,100,3000,50],cost:[200,0,2000,50],jl:'一个月开几堂',pl:'每堂总收入',costl:'每月材料成本'},
+   '课后看顾 + 辅导':{m:'client',c:[5,0,15],fee:[400,200,700,20],cost:[150,0,1000,50],costl:'每月餐食等成本'},
+  };
+  const NOTE={job:'算法：单数 × 每单 − 成本',client:'算法：客户数 × 每户每月 − 成本',hour:'算法：天数 × 时数 × 时薪 × 4.3 周 − 成本',piece:'算法：数量 × 单价 − 成本',sales:'算法：营业额 × 利润% − 成本',task:'算法：任务数 × 每单 − 成本'};
+  const selEl=document.getElementById('jobSel'),fieldsEl=document.getElementById('calcFields'),noteEl=document.getElementById('calcNote');
+  (function(){const g={home:'🏠 在家做',onsite:'🚪 上门服务',drive:'🚗 开车',online:'💻 线上',teach:'📚 教学才艺'};let h='';
+    Object.keys(g).forEach(k=>{const items=D.filter(x=>x.cat===k&&CALC[x.t]);if(!items.length)return;
+      h+=`<optgroup label="${g[k]}">`+items.map(x=>`<option value="${x.t}">${x.ic} ${x.t}</option>`).join('')+'</optgroup>';});
+    selEl.innerHTML=h;})();
+  function row(id,label,val,min,max,step,prefix,suffix){return `<div class="crow"><label>${label} <b>${prefix||''}<span id="${id}V">${val}</span>${suffix||''}</b></label><input type="range" id="${id}" min="${min}" max="${max}" step="${step||1}" value="${val}"></div>`;}
+  function gv(id){const e=document.getElementById(id);return e?+e.value:0;}
+  function sv(id,v){const e=document.getElementById(id+'V');if(e)e.textContent=v;}
+  function renderFields(t){const c=CALC[t];let h='';
+    if(c.m==='job'){h+=row('f1',c.jl||'一个月做几单',c.j[0],c.j[1],c.j[2],c.j[3],'',' 单');h+=row('f2',c.pl||'每单收入',c.p[0],c.p[1],c.p[2],c.p[3],'RM ','');}
+    else if(c.m==='task'){h+=row('f1',c.ql||'一个月几单任务',c.q[0],c.q[1],c.q[2],1,'',' 单');h+=row('f2',c.pl||'每单',c.p[0],c.p[1],c.p[2],c.p[3],'RM ','');}
+    else if(c.m==='client'){h+=row('f1',c.cl||'固定客户数',c.c[0],c.c[1],c.c[2],1,'',' 户');h+=row('f2','每户每月',c.fee[0],c.fee[1],c.fee[2],c.fee[3],'RM ','');}
+    else if(c.m==='hour'){h+=row('f1',c.dl||'一周工作几天',c.d[0],c.d[1],c.d[2],1,'',' 天');h+=row('f2','每次几小时',c.h[0],c.h[1],c.h[2],1,'',' 小时');h+=row('f3','每小时',c.r[0],c.r[1],c.r[2],1,'RM ','');}
+    else if(c.m==='piece'){h+=row('f1',c.ql||'一个月几件',c.q[0],c.q[1],c.q[2],c.q[3],'','');h+=row('f2',c.pl||'每件',c.p[0],c.p[1],c.p[2],c.p[3],'RM ','');}
+    else if(c.m==='sales'){h+=row('f1',c.sl||'每月营业额',c.s[0],c.s[1],c.s[2],c.s[3],'RM ','');h+=row('f2',c.pctl||'你的利润',c.pct[0],c.pct[1],c.pct[2],1,'',' %');}
+    h+=row('fc',c.costl||'每月成本（材料/油钱等）',c.cost[0],c.cost[1],c.cost[2],c.cost[3],'RM ','');
+    fieldsEl.innerHTML=h;noteEl.textContent=NOTE[c.m];
+    fieldsEl.querySelectorAll('input').forEach(i=>i.addEventListener('input',compute));compute();}
+  function compute(){const c=CALC[selEl.value];let gross=0;
+    if(c.m==='sales'){const s=gv('f1'),pct=gv('f2');sv('f1',fmt(s));sv('f2',pct);gross=s*pct/100;}
+    else if(c.m==='hour'){const d=gv('f1'),hh=gv('f2'),r=gv('f3');sv('f1',d);sv('f2',hh);sv('f3',r);gross=d*hh*r*4.3;}
+    else{const a=gv('f1'),b=gv('f2');sv('f1',fmt(a));sv('f2',b);gross=a*b;}
+    const cost=gv('fc');sv('fc',fmt(cost));const net=Math.max(gross-cost,0);
+    document.getElementById('bGross').textContent=fmt(gross);document.getElementById('bCost').textContent=fmt(cost);document.getElementById('total').textContent=fmt(net);}
+  selEl.addEventListener('change',()=>renderFields(selEl.value));renderFields(selEl.value);
 </script>
 </body>
 </html>
