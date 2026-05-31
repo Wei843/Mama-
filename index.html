@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>居家收入起步手册</title>
+<title>KL・雪兰莪 妈妈赚钱与技能指南</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&display=swap" rel="stylesheet">
@@ -13,368 +13,277 @@
     --cream:#fdf8f3; --paper:#ffffff; --line:#efe6db;
     --coral:#e07a4f; --coral-deep:#bf5a31; --coral-soft:#fde9df;
     --calm:#5d7a88; --calm-soft:#e9f1f4; --leaf:#6f9159; --leaf-soft:#ecf3e7;
-    --sun:#eaa83f;
+    --grape:#8a6a96; --grape-soft:#f0e9f3; --sun:#eaa83f; --sun-soft:#fdeecb;
+    --rose:#c66b7e; --rose-soft:#fae6ea;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{
-    font-family:"Noto Sans SC",-apple-system,sans-serif;
-    color:var(--ink);font-weight:300;line-height:1.85;font-size:18px;
-    background:
-      radial-gradient(120% 70% at 85% -5%, #fce7d8 0%, rgba(252,231,216,0) 55%),
-      radial-gradient(90% 60% at 0% 100%, #e8f0f2 0%, rgba(232,240,242,0) 50%),
-      var(--cream);
-    background-attachment:fixed;
-    -webkit-font-smoothing:antialiased;overflow-x:hidden;
-  }
-  .wrap{max-width:640px;margin:0 auto;padding:0 20px}
+  body{font-family:"Noto Sans SC",-apple-system,sans-serif;color:var(--ink);font-weight:300;line-height:1.8;font-size:17px;
+    background:radial-gradient(120% 60% at 90% -5%,#fce7d8 0,rgba(252,231,216,0) 55%),radial-gradient(90% 50% at 0% 102%,#e8f0f2 0,rgba(232,240,242,0) 50%),var(--cream);
+    background-attachment:fixed;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px}
 
-  /* scroll progress */
-  #bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:50;
-    background:linear-gradient(90deg,var(--coral),var(--sun));transition:width .1s linear}
-
-  /* hero */
-  header{position:relative;padding:64px 0 30px;text-align:left;overflow:hidden}
-  .sky{position:absolute;inset:0;z-index:-1;
-    background:linear-gradient(120deg,#fff4ea 0%, #fbe7da 45%, #e9eff2 100%);
-    opacity:.55;animation:drift 14s ease-in-out infinite alternate}
-  @keyframes drift{from{transform:translateX(-3%) scale(1.05)}to{transform:translateX(3%) scale(1.1)}}
-  .orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.9}
-  .orb.sun{width:84px;height:84px;right:24px;top:40px;background:radial-gradient(circle at 35% 35%,#ffd27a,#eaa83f);
-    box-shadow:0 0 50px #f3c06a;animation:bob 6s ease-in-out infinite}
+  header{position:relative;padding:54px 0 26px;overflow:hidden}
+  .orb{position:absolute;width:90px;height:90px;right:18px;top:34px;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%,#ffd27a,#eaa83f);box-shadow:0 0 50px #f3c06a;
+    animation:bob 6s ease-in-out infinite;opacity:.9}
   @keyframes bob{50%{transform:translateY(-12px)}}
-  .eyebrow{font-family:"Fraunces",serif;letter-spacing:.24em;text-transform:uppercase;
-    font-size:.72rem;color:var(--coral-deep);font-weight:600;opacity:0;animation:up .7s .1s forwards}
-  h1{font-family:"Noto Serif SC",serif;font-weight:600;font-size:clamp(2.1rem,8vw,3rem);
-    line-height:1.25;margin-top:16px;opacity:0;animation:up .7s .25s forwards}
+  .eyebrow{font-family:"Fraunces",serif;letter-spacing:.2em;text-transform:uppercase;font-size:.72rem;
+    color:var(--coral-deep);font-weight:600;opacity:0;animation:up .6s .05s forwards}
+  h1{font-family:"Noto Serif SC",serif;font-weight:600;font-size:clamp(1.9rem,6.5vw,2.7rem);line-height:1.25;margin-top:14px;
+    opacity:0;animation:up .6s .18s forwards}
   h1 em{font-family:"Fraunces",serif;font-style:italic;color:var(--coral-deep)}
-  .tagline{margin-top:18px;font-size:1.08rem;color:var(--ink-soft);max-width:30em;
-    opacity:0;animation:up .7s .4s forwards}
-  .scrollhint{margin-top:26px;font-size:.85rem;color:var(--ink-faint);opacity:0;animation:up .7s .6s forwards;
-    display:flex;align-items:center;gap:8px}
-  .scrollhint .arr{display:inline-block;animation:nudge 1.6s ease-in-out infinite}
-  @keyframes nudge{50%{transform:translateY(5px)}}
-  @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .tagline{margin-top:14px;font-size:1.04rem;color:var(--ink-soft);max-width:34em;opacity:0;animation:up .6s .3s forwards}
+  @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-  /* reveal on scroll */
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
-  .reveal.in{opacity:1;transform:none}
+  /* sticky search */
+  .searchbar{position:sticky;top:0;z-index:40;background:rgba(253,248,243,.9);backdrop-filter:blur(10px);
+    padding:12px 0 10px;border-bottom:1px solid var(--line)}
+  .sinput{position:relative}
+  .sinput input{width:100%;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:14px 16px 14px 44px;
+    font-family:inherit;font-size:1rem;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s}
+  .sinput input:focus{border-color:var(--coral);box-shadow:0 0 0 4px var(--coral-soft)}
+  .sinput .mag{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:1.05rem;opacity:.5}
+  .chips{display:flex;gap:8px;overflow-x:auto;padding:11px 0 3px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 15px;
+    font-size:.9rem;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:all .18s;white-space:nowrap}
+  .chip:hover{border-color:var(--coral)}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 
-  section{padding:40px 0}
-  .chip{display:inline-block;font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.1em;
-    text-transform:uppercase;font-weight:600;padding:5px 13px;border-radius:999px;margin-bottom:12px}
-  .chip.coral{background:var(--coral-soft);color:var(--coral-deep)}
-  .chip.calm{background:var(--calm-soft);color:#3c5662}
-  .chip.leaf{background:var(--leaf-soft);color:#3f5731}
-  .chip.sun{background:#fdeecb;color:#a06c14}
-  h2{font-family:"Noto Serif SC",serif;font-weight:600;font-size:1.55rem;line-height:1.35;margin-bottom:8px}
-  .sub{color:var(--ink-faint);font-size:1rem;margin-bottom:18px}
-  p.para{font-size:1.04rem;color:var(--ink-soft);margin-bottom:13px}
-  p.para b,li b{color:var(--ink);font-weight:500}
+  .count{font-size:.86rem;color:var(--ink-faint);margin:16px 0 10px}
+  .count b{color:var(--coral-deep);font-family:"Fraunces",serif}
 
-  .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 20px;
-    box-shadow:0 10px 30px -22px rgba(80,55,40,.4)}
-  .card+.card{margin-top:13px}
+  /* grid */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .cardx{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 16px;
+    box-shadow:0 8px 24px -20px rgba(80,55,40,.5);display:flex;flex-direction:column;
+    animation:pop .35s ease both}
+  @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:none}}
+  .cardx .top{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+  .cardx .ic{font-size:1.35rem;flex:0 0 auto}
+  .cardx .badge{font-size:.68rem;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .cardx h3{font-family:"Noto Serif SC",serif;font-size:1.06rem;font-weight:600;line-height:1.35;margin-bottom:5px}
+  .cardx .desc{font-size:.9rem;color:var(--ink-soft);margin-bottom:10px;flex:1}
+  .cardx .fact{font-size:.82rem;color:var(--ink-soft);padding-top:7px;border-top:1px solid var(--line-soft,#f4efe9)}
+  .cardx .fact b{color:var(--ink);font-weight:600}
+  .cardx .fact .lab{color:var(--ink-faint);font-size:.74rem}
+  /* category colors */
+  .c-home .badge{background:var(--coral-soft);color:var(--coral-deep)}
+  .c-onsite .badge{background:var(--rose-soft);color:#a04356}
+  .c-drive .badge{background:var(--calm-soft);color:#3c5662}
+  .c-online .badge{background:var(--grape-soft);color:#664172}
+  .c-teach .badge{background:var(--sun-soft);color:#9a6710}
+  .c-skill .badge{background:var(--leaf-soft);color:#3f5731}
 
-  .mini h4{font-size:1.06rem;font-weight:500;margin-bottom:2px}
-  .mini p{font-size:.96rem;color:var(--ink-soft)}
-  .mini .ic{font-size:1.5rem;margin-bottom:6px}
+  .empty{grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--ink-faint)}
+  .empty .big{font-size:2rem;margin-bottom:8px}
 
-  ul.tick{list-style:none}
-  ul.tick li{padding:9px 0 9px 30px;position:relative;font-size:1rem;border-bottom:1px solid var(--line)}
-  ul.tick li:last-child{border-bottom:none}
-  ul.tick li::before{content:"✓";position:absolute;left:2px;top:9px;color:var(--leaf);font-weight:700}
+  section.block{padding:40px 0 8px}
+  .shead{margin-bottom:6px}
+  .shead .pre{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);font-weight:600}
+  .shead h2{font-family:"Noto Serif SC",serif;font-weight:600;font-size:1.5rem;line-height:1.35}
+  .shead p{color:var(--ink-faint);font-size:.96rem;margin-top:4px}
 
-  /* AI prompt copy cards */
-  .prompt{background:var(--cream);border:1px solid var(--line);border-left:4px solid var(--coral);
-    border-radius:12px;padding:14px 15px;font-size:1rem;color:var(--ink);line-height:1.65}
-  .copy{margin-top:11px;display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:#fff;
-    border:none;border-radius:10px;padding:10px 16px;font-family:inherit;font-size:.92rem;font-weight:500;
-    cursor:pointer;transition:transform .12s ease,background .2s ease}
-  .copy:active{transform:scale(.96)} .copy.done{background:var(--leaf)}
-  .ptag{display:inline-block;font-size:.78rem;font-weight:600;color:var(--coral-deep);
-    background:var(--coral-soft);padding:3px 11px;border-radius:999px;margin-bottom:10px}
+  /* resources */
+  .resgrid{display:grid;gap:12px;margin-top:16px}
+  .resgroup{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 18px}
+  .resgroup h4{font-family:"Noto Serif SC",serif;font-size:1.08rem;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+  .resgroup .gd{font-size:.86rem;color:var(--ink-faint);margin-bottom:12px}
+  .reslink{display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-top:1px solid var(--line);text-decoration:none;color:inherit;transition:padding-left .15s}
+  .reslink:hover{padding-left:4px}
+  .reslink .rn{flex:0 0 auto;font-weight:600;color:var(--coral-deep);font-size:.95rem}
+  .reslink .rd{font-size:.85rem;color:var(--ink-soft)}
+  .reslink .rd .free{display:inline-block;background:var(--leaf-soft);color:#3f5731;font-size:.68rem;font-weight:600;padding:1px 7px;border-radius:999px;margin-left:5px}
+  .reslink .go{margin-left:auto;color:var(--ink-faint);font-size:.9rem}
+  .caution{background:var(--sun-soft);border:1px solid #f0dca8;border-radius:13px;padding:14px 16px;margin-top:8px;font-size:.92rem;color:#7a5a14}
+  .caution b{color:#5c4310}
 
-  /* stepper */
-  .stepper{margin-top:6px}
-  .stp{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px dashed var(--line)}
-  .stp:last-child{border-bottom:none}
-  .stp .n{flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--calm);color:#fff;
-    display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:600;font-size:1.05rem;
-    transition:transform .3s ease}
-  .stp.have .n{background:var(--leaf)}
-  .stp:hover .n{transform:rotate(-6deg) scale(1.06)}
-  .stp h4{font-size:1.04rem;font-weight:500} .stp p{font-size:.93rem;color:var(--ink-soft)}
-  .soothe{margin-top:14px;background:var(--leaf-soft);border:1px solid #d9e7cf;border-radius:13px;
-    padding:14px 16px;color:#3f5731;font-size:.98rem} .soothe b{color:#2d4221}
+  footer{padding:46px 0 60px;text-align:center}
+  footer .fline{font-family:"Noto Serif SC",serif;font-size:1.28rem;font-weight:600;max-width:24em;margin:0 auto 12px;line-height:1.6}
+  footer .fsub{font-size:.98rem;color:var(--ink-faint);max-width:30em;margin:0 auto;line-height:1.75}
+  .note{margin-top:22px;font-size:.76rem;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:14px}
 
-  /* calculator */
-  .calc{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:24px 20px;
-    box-shadow:0 14px 36px -24px rgba(80,55,40,.5)}
-  .crow{margin-bottom:16px}
-  .crow label{display:flex;justify-content:space-between;align-items:baseline;font-size:.94rem;color:var(--ink-soft);margin-bottom:8px}
-  .crow label b{font-family:"Fraunces",serif;font-weight:600;color:var(--ink);font-size:1.04rem}
-  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:var(--line)}
-  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;
-    background:var(--coral);border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.22);cursor:pointer;transition:transform .1s}
-  input[type=range]::-webkit-slider-thumb:active{transform:scale(1.2)}
-  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--coral);
-    border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.22);cursor:pointer}
-  .night input[type=range]{background:var(--calm-soft)}
-  .night input[type=range]::-webkit-slider-thumb{background:var(--calm)}
-  .night input[type=range]::-moz-range-thumb{background:var(--calm)}
-  .calc h4{font-family:"Noto Serif SC",serif;font-size:1.04rem;margin:4px 0 14px;display:flex;align-items:center;gap:7px}
-  .calc h4.day{color:var(--coral-deep)} .calc h4.night{color:#3c5662}
-  .result{margin-top:18px;background:var(--ink);color:#fff;border-radius:16px;padding:22px;text-align:center}
-  .result .lab{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#cdbdae}
-  .result .big{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(2.3rem,11vw,3rem);line-height:1.1;margin:4px 0}
-  .result .big small{font-size:1.2rem;color:var(--sun);vertical-align:super}
-  .result .bd{font-size:.85rem;color:#d6c8bb;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:4px}
-  .result .bd b{color:#fff;font-weight:500}
-
-  /* timeline */
-  .tl{position:relative;padding-left:8px}
-  .ph{position:relative;padding:0 0 22px 38px}
-  .ph::before{content:"";position:absolute;left:12px;top:22px;bottom:-2px;width:2px;background:var(--line)}
-  .ph:last-child::before{display:none}
-  .ph .dot{position:absolute;left:4px;top:2px;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--coral)}
-  .ph:nth-child(2) .dot{border-color:var(--sun)} .ph:nth-child(3) .dot{border-color:var(--calm)}
-  .ph .when{font-family:"Fraunces",serif;font-weight:600;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--coral)}
-  .ph:nth-child(2) .when{color:#a06c14} .ph:nth-child(3) .when{color:#3c5662}
-  .ph h4{font-family:"Noto Serif SC",serif;font-size:1.1rem;font-weight:600;margin:2px 0 6px}
-  .ph li{font-size:.96rem;color:var(--ink-soft);padding:3px 0 3px 16px;position:relative;list-style:none}
-  .ph li::before{content:"–";position:absolute;left:0;color:var(--ink-faint)}
-
-  /* checklist */
-  .todo{list-style:none}
-  .todo li{display:flex;align-items:center;gap:13px;padding:15px 16px;border:1px solid var(--line);
-    border-radius:14px;margin-bottom:10px;background:var(--paper);cursor:pointer;
-    transition:background .2s,border-color .2s,transform .1s;font-size:1.02rem}
-  .todo li:active{transform:scale(.99)}
-  .todo li .box{flex:0 0 auto;width:26px;height:26px;border-radius:8px;border:2px solid var(--coral);
-    display:grid;place-items:center;color:#fff;font-weight:700;transition:background .2s,transform .2s}
-  .todo li.done{background:var(--leaf-soft);border-color:#cfe2c4}
-  .todo li.done .box{background:var(--leaf);border-color:var(--leaf);transform:scale(1)}
-  .todo li.done .txt{text-decoration:line-through;color:var(--ink-faint)}
-  .todo li .box span{opacity:0;transform:scale(.5);transition:.2s}
-  .todo li.done .box span{opacity:1;transform:scale(1)}
-  .cheer{text-align:center;font-family:"Noto Serif SC",serif;font-size:1.05rem;color:var(--leaf);
-    margin-top:6px;height:1.5em;opacity:0;transition:opacity .4s}
-  .cheer.show{opacity:1}
-
-  footer{padding:46px 0 64px;text-align:center}
-  footer .fline{font-family:"Noto Serif SC",serif;font-size:1.32rem;font-weight:600;max-width:24em;margin:0 auto 12px;line-height:1.6}
-  footer .fsub{font-size:1rem;color:var(--ink-faint);max-width:28em;margin:0 auto;line-height:1.8}
-  .note{margin-top:24px;font-size:.78rem;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:16px}
-
-  @media(min-width:560px){.orb.sun{width:100px;height:100px}}
+  @media(max-width:540px){.grid{grid-template-columns:1fr}body{font-size:16px}}
 </style>
 </head>
 <body>
-<div id="bar"></div>
 
 <header>
-  <div class="sky"></div>
-  <div class="orb sun"></div>
+  <div class="orb"></div>
   <div class="wrap">
-    <div class="eyebrow">起步指南 · 慢慢来</div>
-    <h1>这条路，<br><em>其实很稳</em></h1>
-    <p class="tagline">不用很厉害才能开始。只要踏出最小的一步，就已经在往前了。这本手册，一页一页陪着走。</p>
-    <div class="scrollhint"><span class="arr">↓</span> 往下滑，一起看看</div>
+    <div class="eyebrow">KL ・ Selangor 妈妈专属</div>
+    <h1>找工作、赚外快、<br><em>跟上时代</em>，都从这里开始</h1>
+    <p class="tagline">这里整理了 KL／雪兰莪的妈妈们可以做的工作、能在家赚的外快，还有跟上时代该会的技能。用下面的搜索，找到适合你的那一个。</p>
   </div>
 </header>
 
+<div class="searchbar">
+  <div class="wrap">
+    <div class="sinput">
+      <span class="mag">🔍</span>
+      <input id="q" type="search" placeholder="搜索：清洁、烘焙、开车、网店、AI、化妆……" autocomplete="off">
+    </div>
+    <div class="chips" id="chips">
+      <button class="chip on" data-cat="all">全部</button>
+      <button class="chip" data-cat="home">🏠 在家做</button>
+      <button class="chip" data-cat="onsite">🚪 上门服务</button>
+      <button class="chip" data-cat="drive">🚗 开车</button>
+      <button class="chip" data-cat="online">💻 线上</button>
+      <button class="chip" data-cat="teach">📚 教学才艺</button>
+      <button class="chip" data-cat="skill">✨ 技能学习</button>
+    </div>
+  </div>
+</div>
+
 <div class="wrap">
+  <div class="count" id="count"></div>
+  <div class="grid" id="grid"></div>
 
-  <!-- intro -->
-  <section>
-    <div class="card reveal">
-      <p class="para">刚想开始做点什么的时候，难免会担心：万一花了钱、花了时间，结果不成怎么办？这种顾虑很正常，也很聪明。</p>
-      <p class="para">但其实，开始一门小生意，<b>需要的本钱比想象中少很多</b>。很多事都能从「几乎不花钱」的一小步开始——先试，觉得可以，再走下一步。<b>不用一次拼到底，随时可以停。</b></p>
+  <!-- Resources -->
+  <section class="block">
+    <div class="shead">
+      <div class="pre">免费资源 · 政府与平台</div>
+      <h2>不知从哪开始？这些能帮你</h2>
+      <p>大多免费，专门帮主妇和小本经营者起步。</p>
     </div>
-  </section>
+    <div class="resgrid">
 
-  <!-- 1 AI -->
-  <section>
-    <div class="reveal">
-      <span class="chip coral">第一章</span>
-      <h2>先学会用 AI，你的免费小帮手</h2>
-      <p class="sub">把它想成一个随时都在、很有耐心、什么都懂一点的助手。</p>
-    </div>
-    <div class="card reveal">
-      <p class="para">你<b>会打字、会用社媒</b>，所以 AI 对你来说一点都不难。用<b>讲的或打字</b>都行，不用懂英文。可以先用「<b>ChatGPT</b>」或「<b>豆包</b>」，两个都免费、中文也用得顺，挑一个顺手的就好。</p>
-      <p class="para" style="margin:4px 0 2px">试试直接复制下面这句，贴进去看看：</p>
-    </div>
-    <div class="card reveal">
-      <span class="ptag">写宣传</span>
-      <div class="prompt" id="p1">我是做家庭清洁的，做工仔细、价钱公道，在 PJ 一带接单。帮我写一段亲切的介绍，发到邻居 WhatsApp 群，三四句就好，不要太像广告。</div>
-      <button class="copy" data-t="p1">📋 复制这句</button>
-    </div>
-    <div class="card reveal">
-      <span class="ptag">看懂英文 / 学一句</span>
-      <div class="prompt" id="p2">教我用英文跟客户说「你的屋子已经打扫好了，请检查一下，谢谢」，写出英文，也用中文标怎么念。</div>
-      <button class="copy" data-t="p2">📋 复制这句</button>
-    </div>
-    <div class="reveal card" style="background:var(--coral-soft);border-color:#f2d7c7">
-      <p class="para" style="margin:0;color:var(--coral-deep)">口诀：<b>「我是谁 ＋ 我要你做什么 ＋ 我想要怎样」</b>。讲得越清楚，它帮得越好。</p>
-    </div>
-  </section>
-
-  <!-- 2 Cleaning -->
-  <section>
-    <div class="reveal">
-      <span class="chip coral">第二章 · 白天</span>
-      <h2>把清洁变成自己的生意</h2>
-      <p class="sub">你已经会打扫——要做的，是「自己接固定客户」，不是打散工。</p>
-    </div>
-    <div class="card reveal">
-      <p class="para"><b>稳定的关键</b>：一个每周固定来的客户，比十个一次性客户更值钱。慢慢累积 <b>5–6 个每周固定的家庭</b>，月收入就稳下来了。</p>
-      <ul class="tick">
-        <li><b>定价（KL 行情）</b>：每次 3–4 小时，收 RM90–120；自备用品可多收 RM20–30</li>
-        <li><b>找客户</b>：邻里 WhatsApp 群、公寓住户群、Facebook 社区群</li>
-        <li><b>最有说服力</b>：拍「打扫前后对比」照片发出去</li>
-        <li><b>留住客户</b>：准时、做得仔细、愿意出示 IC 让人安心</li>
-        <li><b>熟手后往高价走</b>：深层 → 搬家 → 装修后清洁（一间三房可到 RM200–500）</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 3 Driving -->
-  <section>
-    <div class="reveal">
-      <span class="chip calm">第三章 · 晚上</span>
-      <h2>开车赚外快（PSV ＋ 四个 app）</h2>
-      <p class="sub">好消息：办一张执照，Grab、AirAsia、Bolt、inDrive 全都能用。</p>
-    </div>
-    <div class="card reveal">
-      <p class="para"><b>你的一天</b>：早上到下午做清洁（主收入）；晚上收工后想开就打开 app 待机，接客人赚多一份，累了关掉休息，时间你自己定。</p>
-      <p class="para" style="font-weight:500;color:var(--ink);margin-bottom:4px">考 PSV 执照（现在没有笔试）：</p>
-      <div class="stepper">
-        <div class="stp have"><div class="n">✓</div><div><h4>你已经有的</h4><p>正常 D 驾照 ＋ 会开车，最重要的早就有了</p></div></div>
-        <div class="stp"><div class="n">1</div><div><h4>诊所做 JPJ L8A 体检</h4><p>普通身体检查，拿到证明</p></div></div>
-        <div class="stp"><div class="n">2</div><div><h4>上 6 小时 PSV 课</h4><p>没有笔试，上完拿证书</p></div></div>
-        <div class="stp"><div class="n">3</div><div><h4>领 PSV 卡</h4><p>交去 JPJ 领卡，一年换一次</p></div></div>
+      <div class="resgroup">
+        <h4>🎓 免费学习・培训</h4>
+        <div class="gd">政府和大平台办的，免费、有中文/马来文。</div>
+        <a class="reslink" href="https://aiuntukrakyat.my" target="_blank" rel="noopener">
+          <span class="rn">AI Untuk Rakyat</span><span class="rd">政府免费 AI 基础课，教你看懂、会用 AI<span class="free">免费</span></span><span class="go">↗</span></a>
+        <a class="reslink" href="https://mdec.my" target="_blank" rel="noopener">
+          <span class="rn">eUsahawan（MDEC）</span><span class="rd">免费数字创业课，教网上做生意、卖货、营销<span class="free">免费</span></span><span class="go">↗</span></a>
+        <a class="reslink" href="https://mdec.my/erezeki" target="_blank" rel="noopener">
+          <span class="rn">eRezeki（MDEC）</span><span class="rd">用手机做数字小任务赚钱，适合在家碎片时间<span class="free">免费加入</span></span><span class="go">↗</span></a>
       </div>
-      <div class="soothe">💚 别被费用吓到：透过 Grab 报名考，<b>PSV 课程、体检、卡的费用办好后基本都能报销</b>，等于不用自己长期掏钱，可以放心去办。</div>
-      <p class="para" style="margin-top:14px"><b>建议先注册 Grab</b>，让它帮你把执照、保险、EVP 都办好，再用同一套文件去注册 AirAsia、Bolt、inDrive。</p>
-      <ul class="tick" style="margin-top:6px">
-        <li><b>晚上待机</b>：打开 app 按「上线」，有单就接，可同时开几个</li>
-        <li><b>安全第一</b>：分享定位给家人、选光线好的地方、车门上锁、累了收工</li>
-      </ul>
-    </div>
-  </section>
 
-  <!-- 4 Other -->
-  <section>
-    <div class="reveal">
-      <span class="chip leaf">第四章</span>
-      <h2>其他适合你的赚钱方式</h2>
-      <p class="sub">不用全做，挑一两样做得开心、做得来的就好。</p>
-    </div>
-    <div class="card mini reveal"><div class="ic">🍜</div><h4>卖家常菜 / 糕点</h4><p>爱煮的话，做给邻居、附近办公室，群里接单，包月送餐更稳定。</p></div>
-    <div class="card mini reveal"><div class="ic">👕</div><h4>洗烫衣服务</h4><p>清洁的延伸，帮人洗、烫、叠衣，按袋或按月收费。</p></div>
-    <div class="card mini reveal"><div class="ic">🚗</div><h4>跑腿 / 代购 / 接送小孩</h4><p>你有车，可帮忙买菜、送东西、固定接送学生（白天的额外收入）。</p></div>
-    <div class="card mini reveal"><div class="ic">📱</div><h4>社媒上卖东西</h4><p>会用社媒——卖二手好物，或帮人代卖、团购，赚一点差价。</p></div>
-  </section>
-
-  <!-- calculator -->
-  <section>
-    <div class="reveal">
-      <span class="chip sun">算一算</span>
-      <h2>一个月，大概能赚多少？</h2>
-      <p class="sub">拖动下面的滑块，填上你自己的情况，下面自动帮你算。</p>
-    </div>
-    <div class="calc reveal">
-      <h4 class="day">☀️ 白天清洁</h4>
-      <div class="crow"><label>一个月做几单 <b><span id="cJobsV">20</span> 单</b></label><input type="range" id="cJobs" min="0" max="30" value="20"></div>
-      <div class="crow"><label>每单收费 <b>RM <span id="cPriceV">100</span></b></label><input type="range" id="cPrice" min="60" max="200" step="10" value="100"></div>
-      <div class="night">
-        <h4 class="night" style="margin-top:18px">🌙 晚上开车</h4>
-        <div class="crow"><label>一周开几晚 <b><span id="dNightsV">3</span> 晚</b></label><input type="range" id="dNights" min="0" max="7" value="3"></div>
-        <div class="crow"><label>每晚几小时 <b><span id="dHoursV">3</span> 小时</b></label><input type="range" id="dHours" min="0" max="6" value="3"></div>
-        <div class="crow"><label>每小时约赚 <b>RM <span id="dRateV">25</span></b></label><input type="range" id="dRate" min="15" max="40" value="25"></div>
+      <div class="resgroup">
+        <h4>🔎 找工作平台</h4>
+        <div class="gd">全职、兼职、在家工作、零工都有，可按地区搜。</div>
+        <a class="reslink" href="https://www.maukerja.my" target="_blank" rel="noopener">
+          <span class="rn">Maukerja</span><span class="rd">本地兼职/全职多，介面简单，可搜住家附近</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://www.jobstreet.com.my" target="_blank" rel="noopener">
+          <span class="rn">JobStreet</span><span class="rd">马来西亚最大求职网，正式职缺多</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://goget.my" target="_blank" rel="noopener">
+          <span class="rn">GoGet</span><span class="rd">零工平台：跑腿、代购、帮手，自己选时间接单</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://www.ricebowl.my" target="_blank" rel="noopener">
+          <span class="rn">Ricebowl</span><span class="rd">兼职与新鲜人职缺，常有零售/客服</span><span class="go">↗</span></a>
       </div>
-      <div class="crow"><label>每月油钱＋用品（估）<b>RM <span id="costV">450</span></b></label><input type="range" id="cost" min="100" max="900" step="50" value="450"></div>
-      <div class="result">
-        <div class="lab">预估每月净收入</div>
-        <div class="big"><small>RM</small> <span id="total">2,500</span></div>
-        <div class="bd"><span>清洁 <b>RM<span id="bClean">2,000</span></b></span><span>开车 <b>RM<span id="bDrive">968</span></b></span><span>成本 <b>–RM<span id="bCost">450</span></b></span></div>
+
+      <div class="resgroup">
+        <h4>💰 需要资金时（可选）</h4>
+        <div class="gd">生意做起来、想扩大时才考虑。借之前先想清楚还得起。</div>
+        <a class="reslink" href="https://www.tekun.gov.my" target="_blank" rel="noopener">
+          <span class="rn">TEKUN Nasional</span><span class="rd">政府微型贷款，少文件、无需抵押（含 Skim Teman 非土著）</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://www.aim.gov.my" target="_blank" rel="noopener">
+          <span class="rn">AIM（Amanah Ikhtiar Malaysia）</span><span class="rd">专门扶持低收入女性创业的小额贷款</span><span class="go">↗</span></a>
+        <a class="reslink" href="https://www.cgc.com.my" target="_blank" rel="noopener">
+          <span class="rn">CGC · BizWanita</span><span class="rd">女性企业专属的银行贷款担保计划</span><span class="go">↗</span></a>
+        <div class="caution">⚠️ <b>小心：</b>借钱是责任，不是收入。先从「几乎不用本钱」的方式起步，真的需要资金扩大时再考虑，且只找上面这些正规机构——<b>任何要你先付费、给 OTP 或私下转账的「贷款」都是骗局。</b></div>
       </div>
     </div>
   </section>
 
-  <!-- timeline -->
-  <section>
-    <div class="reveal">
-      <span class="chip coral">第五章</span>
-      <h2>90 天，一小步一小步</h2>
-      <p class="sub">做完一格，先用几天，再走下一格。</p>
-    </div>
-    <div class="card reveal">
-      <div class="tl">
-        <div class="ph"><div class="dot"></div><div class="when">第 1 周 · 起步</div><h4>不花钱，先动起来</h4>
-          <ul><li>打扫时拍 2–3 张前后对比照</li><li>加 3 个住家附近的群</li><li>用 AI 写一段介绍，发出去</li></ul></div>
-        <div class="ph"><div class="dot"></div><div class="when">第 1 个月 · 打基础</div><h4>固定客户 ＋ 办执照</h4>
-          <ul><li>争取 2–3 个每周固定客户</li><li>注册 Grab，报名 PSV、做体检</li></ul></div>
-        <div class="ph"><div class="dot"></div><div class="when">第 2–3 个月 · 双线</div><h4>稳定 ＋ 加开车</h4>
-          <ul><li>固定客户增到 5–6 个，月收入稳下来</li><li>执照下来后晚上开车 2–3 晚／周</li></ul></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- this week checklist -->
-  <section>
-    <div class="reveal">
-      <span class="chip leaf">就从这里开始</span>
-      <h2>本周，先做这三件事</h2>
-      <p class="sub">都不花钱。点一下打勾，看着自己一步步往前。</p>
-    </div>
-    <ul class="todo reveal" id="todo">
-      <li data-i="1"><span class="box"><span>✓</span></span><span class="txt">下载 ChatGPT 或豆包，跟它讲一句话试试</span></li>
-      <li data-i="2"><span class="box"><span>✓</span></span><span class="txt">打扫时，拍一张「干净成果」照片</span></li>
-      <li data-i="3"><span class="box"><span>✓</span></span><span class="txt">加入 1 个住家附近的邻里群</span></li>
-    </ul>
-    <div class="cheer" id="cheer">做到了！你已经在往前了 🌱</div>
-  </section>
-
-  <footer class="reveal">
-    <p class="fline">今天，先做最小的一件事就好。<br>剩下的，慢慢来。</p>
-    <p class="fsub">起步从来都不容易。愿意去了解、愿意开始，本身就很了不起。有不懂的，随时问 AI 助手帮忙——它不会累，也不会笑你。慢慢来，做得到的。</p>
-    <p class="note">※ 规划与鼓励用途。收费、行情为吉隆坡／雪隆区参考；PSV、EVP、报销与平台政策以 JPJ／APAD 及各平台最新公告为准，重要数字请自行核实。</p>
+  <footer>
+    <p class="fline">你已经会很多事，<br>只是还没把它们变成收入。</p>
+    <p class="fsub">慢慢看、慢慢试。找到一个感兴趣的，先迈出最小的一步就好。有不懂的，随时可以问 AI 帮你——它免费、有耐心，也不会笑你。</p>
+    <p class="note">※ 收入与门槛为 KL／雪兰莪市场参考，实际视情况而定。涉及食品、托儿、载客等可能需相关执照或注册（如食品 MeSTI、托儿所 JKM、载客 PSV），办理前请向相关单位确认。外部链接由各机构维护，可能更新。</p>
   </footer>
 </div>
 
 <script>
-  // scroll progress
-  const bar=document.getElementById('bar');
-  addEventListener('scroll',()=>{const h=document.documentElement;
-    bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
+  const DATA = [
+    // ---- 在家做 ----
+    {cat:'home',ic:'🧹',t:'家庭清洁',d:'帮人打扫住家，建立每周固定客户最稳定。',k1:'起步',v1:'清洁用品（约RM150）',k2:'收入参考',v2:'每次RM90–120',tags:'打扫 cleaning 清洁 钟点 家务'},
+    {cat:'home',ic:'🍱',t:'代煮便当 / Tingkat',d:'煮家常菜，给上班族、邻居，包月送餐更稳。',k1:'起步',v1:'厨房＋食材',k2:'收入参考',v2:'每户月RM300–500',tags:'煮饭 便当 tingkat 包月 家常菜 餐'},
+    {cat:'home',ic:'🧁',t:'烘焙接单',d:'蛋糕、布朗尼、节庆饼干，靠订单和口碑。',k1:'起步',v1:'烤箱＋材料',k2:'收入参考',v2:'蛋糕RM60–200/个',tags:'烘焙 蛋糕 饼干 baking cake 甜点 节庆'},
+    {cat:'home',ic:'🍡',t:'卖糕点 Kuih',d:'做传统糕点供早市、咖啡店或接订单。',k1:'起步',v1:'小，材料为主',k2:'收入参考',v2:'看出货量',tags:'糕点 kuih 早市 nyonya 传统'},
+    {cat:'home',ic:'🧵',t:'缝纫・改衣',d:'改裤脚、修补、做 baju kurung，技术活越熟越值钱。',k1:'起步',v1:'缝纫机',k2:'收入参考',v2:'改衣RM10–40/件',tags:'缝纫 改衣 裁缝 sewing baju 修补'},
+    {cat:'home',ic:'👕',t:'洗烫衣服务',d:'帮人洗、烫、叠衣，可上门收送，按件或包月。',k1:'起步',v1:'熨斗',k2:'收入参考',v2:'按公斤/包月',tags:'洗衣 烫衣 dobi laundry 熨'},
+    {cat:'home',ic:'🧸',t:'家庭托儿',d:'在家照顾邻居小孩，需安全环境与信任。',k1:'起步',v1:'多名孩童须向JKM注册',k2:'收入参考',v2:'每名月RM400–800',tags:'托儿 看孩子 babysitting taska 保姆 育儿'},
+    {cat:'home',ic:'💅',t:'在家美甲 / 美睫',d:'学一门手艺，在家接客，回头客多。',k1:'起步',v1:'工具＋短期课程',k2:'收入参考',v2:'每次RM30–120',tags:'美甲 美睫 nail lash 美容 手艺'},
+    {cat:'home',ic:'🕯️',t:'手工艺品',d:'蜡烛、香皂、串珠、滴胶，节庆礼盒最好卖。',k1:'起步',v1:'材料',k2:'收入参考',v2:'看款式定价',tags:'手工 手作 craft 蜡烛 香皂 礼盒 diy'},
 
-  // reveal on scroll
-  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
-  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*70)+'ms';io.observe(el);});
+    // ---- 上门服务 ----
+    {cat:'onsite',ic:'🤱',t:'陪月 / 月嫂',d:'照顾产妇与新生儿，需求大、收入高，可考陪月课程。',k1:'起步',v1:'陪月课程/经验',k2:'收入参考',v2:'每月RM4k–8k',tags:'陪月 月嫂 confinement 坐月 产后 看护'},
+    {cat:'onsite',ic:'👵',t:'看护 / 居家照顾',d:'照顾长者或病人，陪伴、起居协助。',k1:'起步',v1:'耐心/护理经验',k2:'收入参考',v2:'时薪或月薪',tags:'看护 caregiver 长者 老人 照顾 护理'},
+    {cat:'onsite',ic:'💄',t:'化妆师 / 新娘妆',d:'帮人化妆，婚礼、活动需求稳定。',k1:'起步',v1:'化妆课＋器材',k2:'收入参考',v2:'每单RM150–600+',tags:'化妆 makeup 新娘 mua 美妆 婚礼'},
+    {cat:'onsite',ic:'💆',t:'按摩 / Spa Urut',d:'上门或在家做传统按摩、产后护理。',k1:'起步',v1:'手艺/课程',k2:'收入参考',v2:'每次RM60–150',tags:'按摩 spa urut massage 推拿 产后'},
+    {cat:'onsite',ic:'🎪',t:'摆摊 / 夜市',d:'在 pasar malam 或市集卖吃的、小物。',k1:'起步',v1:'摊位租金＋货',k2:'收入参考',v2:'看人流',tags:'摆摊 夜市 pasar malam 市集 小贩 摊'},
+    {cat:'onsite',ic:'🙋',t:'活动帮手 / Promoter',d:'周末活动、试吃推广、展销帮手，时间灵活。',k1:'起步',v1:'低',k2:'收入参考',v2:'时薪/日薪',tags:'promoter 活动 兼职 part time 推广 展销'},
 
-  // copy buttons
-  document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
-    const t=document.getElementById(b.dataset.t).innerText.trim();
-    try{await navigator.clipboard.writeText(t);}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');}catch(_){}a.remove();}
-    const o=b.innerHTML;b.classList.add('done');b.innerHTML='✓ 已复制，去贴给 AI';setTimeout(()=>{b.classList.remove('done');b.innerHTML=o;},1900);
-  }));
+    // ---- 开车 ----
+    {cat:'drive',ic:'🚕',t:'E-hailing 开车',d:'Grab、AirAsia、Bolt、inDrive 载客，一张 PSV 全通用。',k1:'起步',v1:'PSV执照（可免费考）',k2:'收入参考',v2:'RM20–40/小时',tags:'grab 开车 e-hailing psv airasia bolt indrive 载客 司机'},
+    {cat:'drive',ic:'🛵',t:'送餐 / 送货',d:'foodpanda、Grab 送餐，或 Lalamove 送货。',k1:'起步',v1:'交通工具（部分需PSV）',k2:'收入参考',v2:'按单计',tags:'送餐 foodpanda grab 送货 lalamove delivery 外卖'},
+    {cat:'drive',ic:'📦',t:'跑腿 / 代购',d:'GoGet、Lalamove 接任务：买菜、排队、送东西。',k1:'起步',v1:'注册平台',k2:'收入参考',v2:'按任务',tags:'跑腿 代购 goget errand 帮买 任务'},
+    {cat:'drive',ic:'🚐',t:'接送学生',d:'固定接送学生上下学，谈好家长就有稳定月收入。',k1:'起步',v1:'车＋与家长谈好',k2:'收入参考',v2:'每名月固定',tags:'接送 学生 校车 carpool 上学 司机'},
 
-  // calculator
-  const $=id=>document.getElementById(id), fmt=n=>Math.round(n).toLocaleString('en-US');
-  function calc(){
-    const cj=+$('cJobs').value,cp=+$('cPrice').value,dn=+$('dNights').value,dh=+$('dHours').value,dr=+$('dRate').value,co=+$('cost').value;
-    $('cJobsV').textContent=cj;$('cPriceV').textContent=cp;$('dNightsV').textContent=dn;$('dHoursV').textContent=dh;$('dRateV').textContent=dr;$('costV').textContent=fmt(co);
-    const clean=cj*cp, drive=dn*dh*dr*4.3, total=Math.max(clean+drive-co,0);
-    $('bClean').textContent=fmt(clean);$('bDrive').textContent=fmt(drive);$('bCost').textContent=fmt(co);$('total').textContent=fmt(total);
+    // ---- 线上 ----
+    {cat:'online',ic:'🛒',t:'网店卖货',d:'在 Shopee、TikTok Shop 卖货，0 店租。',k1:'起步',v1:'货源＋手机',k2:'收入参考',v2:'看销量',tags:'网店 shopee tiktok 卖货 电商 online shop 开店'},
+    {cat:'online',ic:'📹',t:'直播带货',d:'用手机开直播卖东西，练熟了转化很高。',k1:'起步',v1:'手机＋练习',k2:'收入参考',v2:'佣金＋销量',tags:'直播 带货 live tiktok 卖 主播'},
+    {cat:'online',ic:'🤝',t:'代购 / 团购',d:'当团长开团、代理或 dropship，赚佣金差价。',k1:'起步',v1:'供应商＋社群',k2:'收入参考',v2:'佣金/差价',tags:'团购 代购 dropship 代理 团长 微商'},
+    {cat:'online',ic:'⌨️',t:'在家接案 WFH',d:'打字、数据输入、线上客服、行政支援。',k1:'起步',v1:'电脑＋一项技能',k2:'收入参考',v2:'按件/时',tags:'wfh 在家工作 打字 客服 freelance 自由 数据'},
+    {cat:'online',ic:'📲',t:'内容创作 / 联盟营销',d:'拍短视频、写测评，靠流量与佣金（慢热但可持续）。',k1:'起步',v1:'手机＋耐心',k2:'收入参考',v2:'佣金（慢热）',tags:'内容 创作 affiliate 联盟 小红书 tiktok 测评 网红'},
+    {cat:'online',ic:'🗂️',t:'虚拟助理 VA',d:'帮小企业管理邮件、排程、社媒，远程做。',k1:'起步',v1:'电脑＋组织力',k2:'收入参考',v2:'时薪',tags:'va 虚拟助理 assistant 远程 行政'},
+    {cat:'online',ic:'🌐',t:'翻译 / 文案',d:'中英巫互译、帮人写文案，按件接。',k1:'起步',v1:'双语能力',k2:'收入参考',v2:'按字/件',tags:'翻译 文案 translate 中英 写作'},
+    {cat:'online',ic:'🪙',t:'eRezeki 数字微任务',d:'政府平台，用碎片时间做线上小任务赚钱。',k1:'起步',v1:'上 eRezeki 注册',k2:'收入参考',v2:'小额累积',tags:'erezeki 微任务 gig 政府 在家 mdec'},
+
+    // ---- 教学才艺 ----
+    {cat:'teach',ic:'✏️',t:'补习',d:'教你擅长的科目，小学到中学需求都大。',k1:'起步',v1:'学科强项',k2:'收入参考',v2:'每小时RM25–60',tags:'补习 tuition 教书 功课 学生 老师'},
+    {cat:'teach',ic:'🎹',t:'教钢琴 / 音乐',d:'有乐器底子的话，在家收学生。',k1:'起步',v1:'乐器与基础',k2:'收入参考',v2:'每堂RM30–80',tags:'钢琴 音乐 乐器 piano 教 才艺'},
+    {cat:'teach',ic:'🍳',t:'教烹饪 / 烘焙班',d:'把你的拿手菜开成小班或工作坊。',k1:'起步',v1:'拿手手艺',k2:'收入参考',v2:'每场报名费',tags:'烹饪班 烘焙班 工作坊 workshop 教 厨艺'},
+    {cat:'teach',ic:'🧮',t:'课后看顾 + 辅导',d:'放学后照顾孩子并辅导功课，家长很需要。',k1:'起步',v1:'耐心＋基础学科',k2:'收入参考',v2:'每名月固定',tags:'课后 辅导 功课 daycare 看顾 学生'},
+
+    // ---- 技能学习（跟上时代）----
+    {cat:'skill',ic:'🤖',t:'学会用 AI',d:'帮你写文案、翻译、解答疑问——你的免费小帮手。',k1:'为什么重要',v1:'省时间、跨过英文门槛',k2:'去哪学',v2:'ChatGPT/豆包・AI Untuk Rakyat',tags:'ai chatgpt 豆包 人工智能 跟上时代'},
+    {cat:'skill',ic:'📱',t:'电子钱包 & QR 收款',d:'Touch n Go、DuitNow QR 收钱付钱，客户都爱用。',k1:'为什么重要',v1:'收款方便、显得专业',k2:'去哪学',v2:'app 内引导・问 AI',tags:'ewallet touch n go duitnow qr 收款 付款 电子钱包'},
+    {cat:'skill',ic:'🏦',t:'网上银行 & 转账',d:'收款、转账、对账，生意收入清清楚楚。',k1:'为什么重要',v1:'管理收入必备',k2:'去哪学',v2:'你的银行 app',tags:'网上银行 转账 duitnow banking 收钱'},
+    {cat:'skill',ic:'💬',t:'WhatsApp Business',d:'产品目录、自动回复、群发广播，接单更省力。',k1:'为什么重要',v1:'专业地接客、留客',k2:'去哪学',v2:'免费下载・问 AI 设定',tags:'whatsapp business 目录 自动回复 广播 接单'},
+    {cat:'skill',ic:'🎨',t:'用 Canva 做海报',d:'自己做宣传海报、价目表、logo，免费又好看。',k1:'为什么重要',v1:'省设计费、看起来用心',k2:'去哪学',v2:'canva.com・YouTube',tags:'canva 海报 设计 价目表 logo 宣传'},
+    {cat:'skill',ic:'🎬',t:'拍照 & 剪短视频',d:'拍好产品照、用 CapCut 剪带货短视频。',k1:'为什么重要',v1:'好图好片＝多客人',k2:'去哪学',v2:'CapCut・YouTube',tags:'拍照 剪辑 capcut 短视频 产品照 视频'},
+    {cat:'skill',ic:'📣',t:'社媒营销基础',d:'FB、IG、TikTok、小红书，免费让更多人看到你。',k1:'为什么重要',v1:'免费曝光、找客户',k2:'去哪学',v2:'eUsahawan 免费课・YouTube',tags:'社媒 营销 facebook instagram tiktok 小红书 推广'},
+    {cat:'skill',ic:'🛍️',t:'开网店步骤',d:'一步步把生意搬上 Shopee / TikTok Shop。',k1:'为什么重要',v1:'24 小时都能卖',k2:'去哪学',v2:'卖家中心・eUsahawan',tags:'开网店 shopee tiktok 卖家 电商 上线'},
+    {cat:'skill',ic:'🛡️',t:'防诈骗',d:'识破假投资、假客服、假中奖，保住辛苦钱。',k1:'为什么重要',v1:'保护你的积蓄',k2:'记住',v2:'不点陌生链接・绝不给 OTP',tags:'诈骗 防骗 scam otp 安全 假客服 假投资'},
+    {cat:'skill',ic:'📒',t:'简单记账',d:'记下收入与开销，知道自己真正赚多少、留多少。',k1:'为什么重要',v1:'生意才做得久',k2:'去哪学',v2:'记账 app 或本子・问 AI',tags:'记账 理财 budget 收入 管理 账'},
+    {cat:'skill',ic:'🗣️',t:'基础英文 / 马来文',d:'学几句常用的客户用语，沟通更顺。',k1:'为什么重要',v1:'接触更多客户',k2:'去哪学',v2:'用 AI 每天学一句',tags:'英文 马来文 english malay 语言 沟通 学习'},
+  ];
+
+  const catLabel = {home:'在家做',onsite:'上门服务',drive:'开车',online:'线上',teach:'教学才艺',skill:'技能学习'};
+  const grid=document.getElementById('grid'), countEl=document.getElementById('count'), qEl=document.getElementById('q');
+  let activeCat='all', query='';
+
+  function render(){
+    const q=query.trim().toLowerCase();
+    const list=DATA.filter(x=>{
+      const okCat = activeCat==='all' || x.cat===activeCat;
+      const hay = (x.t+' '+x.d+' '+x.tags+' '+catLabel[x.cat]).toLowerCase();
+      const okQ = !q || hay.includes(q);
+      return okCat && okQ;
+    });
+    countEl.innerHTML = list.length ? `找到 <b>${list.length}</b> 个适合你的选择` : '';
+    if(!list.length){
+      grid.innerHTML = `<div class="empty"><div class="big">🌱</div>没找到「${query}」相关的。<br>换个词试试，例如「煮」「卖」「教」「线上」，或点上面的分类看看。</div>`;
+      return;
+    }
+    grid.innerHTML = list.map((x,i)=>`
+      <div class="cardx c-${x.cat}" style="animation-delay:${Math.min(i*30,300)}ms">
+        <div class="top"><span class="ic">${x.ic}</span><span class="badge">${catLabel[x.cat]}</span></div>
+        <h3>${x.t}</h3>
+        <div class="desc">${x.d}</div>
+        <div class="fact"><span class="lab">${x.k1}：</span><b>${x.v1}</b><br><span class="lab">${x.k2}：</span><b>${x.v2}</b></div>
+      </div>`).join('');
   }
-  ['cJobs','cPrice','dNights','dHours','dRate','cost'].forEach(i=>$(i).addEventListener('input',calc));calc();
 
-  // checklist (in-memory only)
-  const todo=document.getElementById('todo'),cheer=document.getElementById('cheer');
-  todo.addEventListener('click',e=>{const li=e.target.closest('li');if(!li)return;li.classList.toggle('done');
-    const all=[...todo.children].every(x=>x.classList.contains('done'));cheer.classList.toggle('show',all);});
+  document.getElementById('chips').addEventListener('click',e=>{
+    const b=e.target.closest('.chip'); if(!b) return;
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+    b.classList.add('on'); activeCat=b.dataset.cat; render();
+  });
+  qEl.addEventListener('input',e=>{query=e.target.value;render();});
+  render();
 </script>
 </body>
 </html>
